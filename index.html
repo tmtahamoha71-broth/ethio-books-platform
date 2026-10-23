@@ -1,1 +1,248 @@
-index.html
+
+<!DOCTYPE html>
+<html lang="am">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ኢትዮ ዲጂታል ኪታብ - Smart Book Finder, Bots & Rewards</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: rgba(30, 41, 59, 0.85);
+            --accent-color: #38bdf8;
+            --text-color: #f8fafc;
+            --border-color: rgba(255, 255, 255, 0.12);
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .container { max-width: 750px; width: 100%; }
+        
+        /* AD BANNER SPACE */
+        .ad-container {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px dashed rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            padding: 10px;
+            text-align: center;
+            font-size: 11px;
+            color: #64748b;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+        }
+
+        header {
+            text-align: center;
+            padding: 22px 20px;
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 20px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+        }
+        h1 { color: var(--accent-color); margin: 5px 0; font-size: 24px; }
+        .tagline { color: #94a3b8; font-size: 14px; margin-top: 2px; }
+
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            padding: 22px;
+            border-radius: 14px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 20px;
+        }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 6px; font-weight: bold; font-size: 14px; }
+        input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            background: rgba(15, 23, 42, 0.7);
+            color: #fff;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+        .search-btn {
+            width: 100%;
+            padding: 13px;
+            background-color: var(--accent-color);
+            color: #0f172a;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 15px;
+        }
+        .result-box {
+            margin-top: 15px;
+            padding: 15px;
+            background: rgba(56, 189, 248, 0.1);
+            border: 1px dashed var(--accent-color);
+            border-radius: 8px;
+            display: none;
+            line-height: 1.6;
+        }
+
+        /* LUCKY SPIN SECTION */
+        .wheel-section { text-align: center; }
+        .wheel-box {
+            font-size: 18px;
+            font-weight: bold;
+            color: #f59e0b;
+            margin: 15px 0;
+            padding: 15px;
+            background: rgba(15, 23, 42, 0.9);
+            border-radius: 8px;
+            border: 1px solid #f59e0b;
+        }
+        .spin-btn {
+            width: 100%;
+            padding: 13px;
+            background-color: #22c55e;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        /* BOTS BUTTONS */
+        .bot-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 12px;
+            margin-top: 15px;
+        }
+        .bot-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 13px;
+            color: #ffffff;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .btn-tg { background-color: #0088cc; }
+        .btn-fb { background-color: #1877f2; }
+        .btn-wa { background-color: #25d366; }
+        .btn-imo { background-color: #00a8e8; }
+
+        footer {
+            margin-top: 15px;
+            text-align: center;
+            font-size: 12px;
+            color: #94a3b8;
+            border-top: 1px solid var(--border-color);
+            padding-top: 15px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- TOP ADVERTISEMENT SPACE -->
+    <div class="ad-container">
+        📢 ማስታወቂያ (Sponsored Ad Area)
+    </div>
+
+    <header>
+        <h1>📚 ኢትዮ ዲጂታል ኪታብ</h1>
+        <p class="tagline">መጻሕፍትን በስም ይፈልጉ፤ በፈለጉት የሶሻል ሚዲያ ቦት ያግኙን!</p>
+    </header>
+
+    <!-- 1. መጽሐፍ ፈላጊ (Book Finder) -->
+    <div class="card">
+        <h2>🔍 ፈጣን የመጽሐፍ አሳሽ (AI Search)</h2>
+        <div class="form-group">
+            <label>የሚፈልጉትን መጽሐፍ ስም ይጻፉ</label>
+            <input type="text" id="bookQuery" placeholder="ለምሳሌ፡ የልቦና ጥበብ፣ ፍቅር እስከ መቃብር...">
+        </div>
+        <button class="search-btn" onclick="searchBook()">መጽሐፉን ፈልግ (Search)</button>
+        <div id="searchResult" class="result-box"></div>
+    </div>
+
+    <!-- MIDDLE ADVERTISEMENT SPACE -->
+    <div class="ad-container">
+        📢 ስፖንሰር የተደረገ ማስታወቂያ
+    </div>
+
+    <!-- 2. የዕድል ዊል (Lucky Spin Wheel) -->
+    <div class="card wheel-section">
+        <h2>🎁 ዕድልዎን ይሞክሩ (Lucky Spin)</h2>
+        <p style="font-size: 13px; color: #cbd5e1;">የቀኑን ነፃ የሞባይል ካርድ ወይም የፕሪሚየም መጽሐፍ ሽልማት ያሸንፉ!</p>
+        <div id="wheelResult" class="wheel-box">🎁 ሽልማትዎ እዚህ ይታያል</div>
+        <button class="spin-btn" onclick="spinWheel()">አሁን ያሽከርክሩ (Spin Wheel)</button>
+    </div>
+
+    <!-- 3. የሶሻል ሚዲያ ቦቶች ማገናኛ -->
+    <div class="card" style="text-align: center;">
+        <h2>🤖 በፈለጉት ሶሻል ሚዲያ ቦት ያግኙን</h2>
+        <p style="font-size: 13px; color: #cbd5e1;">ዌብሳይት መጠቀም ካልፈለጉ በቀጥታ በቦቶቻችን በኩል መጽሐፍ ማዘዝ ይችላሉ፦</p>
+        
+        <div class="bot-buttons">
+            <a href="https://t.me/DRCS_Ethiopia_Bot" target="_blank" class="bot-btn btn-tg">
+                ✈️ Telegram Bot
+            </a>
+            <a href="https://m.me/your_facebook_page" target="_blank" class="bot-btn btn-fb">
+                💬 Messenger Bot
+            </a>
+            <a href="https://wa.me/251900000000" target="_blank" class="bot-btn btn-wa">
+                🟢 WhatsApp Bot
+            </a>
+            <a href="https://imo.im" target="_blank" class="bot-btn btn-imo">
+                🔹 IMO Connect
+            </a>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2026 Ethio Digital Books. መብቱ በህግ የተጠበቀ ነው።</p>
+    </footer>
+</div>
+
+<script>
+    function searchBook() {
+        const query = document.getElementById('bookQuery').value.trim();
+        const resultBox = document.getElementById('searchResult');
+        
+        if(!query) {
+            alert('እባክዎ የመጽሐፍ ስም ያስገቡ!');
+            return;
+        }
+
+        resultBox.style.display = 'block';
+        resultBox.innerHTML = `⏳ <b>${query}</b> የሚለውን መጽሐፍ በመፈለግ ላይ...<br><br>
+        ✅ <b>የተገኘ ውጤት፦</b><br>📄 <b>ርዕስ፡</b> ${query} (PDF Digital Edition)<br>
+        📥 <a href="#" style="color: #38bdf8; font-weight: bold;">መጽሐፉን ለማውረድ እዚህ ይጫኑ (Download PDF)</a>`;
+    }
+
+    function spinWheel() {
+        const prizes = [
+            "🎉 እንኳን ደስ አለዎት! 25 ብር የሞባይል ካርድ አሸንፈዋል!",
+            "📚 1 ነጻ ፕሪሚየም መጽሐፍ ተሸልመዋል!",
+            "😢 ለጥቂት አመለጣችሁ! ነገ ደግመው ይሞክሩ።",
+            "⭐ 10 የloyalty ነጥቦችን አግኝተዋል!"
+        ];
+        const randomPrize = prizes[Math.floor(Math.random() * prizes.length)];
+        document.getElementById('wheelResult').innerText = randomPrize;
+    }
+</script>
+
+</body>
+</html>
