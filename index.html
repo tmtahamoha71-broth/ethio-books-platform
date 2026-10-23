@@ -3,18 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ኢትዮ ዲጂታል ሱፐር ፖርታል - Global Digital Hub</title>
+    <title>ኢትዮ ዲጂታል ሱፐር ፖርታል</title>
     
-    <!-- Meta Tags for SEO, Facebook & Google Ads -->
-    <meta name="description" content="መጻሕፍት፣ አፖች፣ የቀጥታ ዜናዎች፣ የስፖርት ውጤቶች እና የቴሌብር/Binance ክፍያዎች በአንድ ላይ!">
-    <meta property="og:title" content="ኢትዮ ዲጂታል ሱፐር ፖርታል - Ethio Digital Super Portal">
-    <meta property="og:description" content="በ50 ብር ወይም በ$1 USDT ብቻ ፕሪሚየም መጻሕፍትን እና አፖችን ያግኙ!">
-    <meta property="og:type" content="website">
+    <meta name="theme-color" content="#060913">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Ethio Super Portal">
 
     <style>
         :root {
             --bg-color: #060913;
-            --card-bg: rgba(15, 23, 42, 0.85);
+            --card-bg: rgba(15, 23, 42, 0.9);
             --accent-cyan: #38bdf8;
             --accent-green: #22c55e;
             --accent-gold: #f59e0b;
@@ -25,49 +23,48 @@
         }
 
         body {
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background: radial-gradient(circle at top center, #1e1b4b 0%, #060913 70%);
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            background: radial-gradient(circle at top, #1e1b4b 0%, #060913 70%);
             color: var(--text-main);
             margin: 0;
-            padding: 12px;
+            padding: 10px;
             display: flex;
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
         }
 
-        .container { max-width: 950px; width: 100%; }
+        .container { max-width: 950px; width: 100%; padding-bottom: 70px; }
 
-        /* LOGO & HEADER STYLING */
         header {
             text-align: center;
-            padding: 25px 15px;
+            padding: 18px 12px;
             background: var(--card-bg);
             backdrop-filter: blur(16px);
-            border-radius: 20px;
+            border-radius: 18px;
             border: 1px solid var(--border-glow);
-            margin-bottom: 20px;
-            box-shadow: 0 0 25px rgba(56, 189, 248, 0.15);
+            margin-bottom: 15px;
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.15);
         }
 
         .logo-container {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 12px;
-            margin-bottom: 10px;
+            gap: 10px;
+            margin-bottom: 6px;
         }
 
         .logo-icon {
-            width: 48px;
-            height: 48px;
+            width: 40px;
+            height: 40px;
             background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
-            border-radius: 12px;
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 26px;
-            box-shadow: 0 0 15px var(--accent-cyan);
+            font-size: 22px;
+            box-shadow: 0 0 12px var(--accent-cyan);
         }
 
         h1 {
@@ -75,49 +72,48 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin: 0;
-            font-size: 28px;
+            font-size: 22px;
             font-weight: 800;
         }
 
         .badge-bar {
             display: flex;
             justify-content: center;
-            gap: 10px;
+            gap: 8px;
             flex-wrap: wrap;
-            margin-top: 10px;
+            margin-top: 8px;
         }
 
         .user-badge {
             background: rgba(245, 158, 11, 0.15);
             border: 1px solid var(--accent-gold);
             color: var(--accent-gold);
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 12px;
+            padding: 4px 10px;
+            border-radius: 18px;
+            font-size: 11px;
             font-weight: bold;
         }
 
-        /* LIVE NEWS TICKER */
         .news-ticker {
             background: rgba(15, 23, 42, 0.9);
             border: 1px solid var(--border-glow);
-            border-radius: 12px;
-            padding: 8px 15px;
-            margin-bottom: 20px;
+            border-radius: 10px;
+            padding: 8px 12px;
+            margin-bottom: 15px;
             display: flex;
             align-items: center;
-            gap: 10px;
-            font-size: 13px;
+            gap: 8px;
+            font-size: 12px;
             overflow: hidden;
         }
 
         .ticker-title {
             background: #ef4444;
             color: white;
-            padding: 2px 8px;
-            border-radius: 6px;
+            padding: 2px 6px;
+            border-radius: 4px;
             font-weight: bold;
-            font-size: 11px;
+            font-size: 10px;
             white-space: nowrap;
         }
 
@@ -132,169 +128,149 @@
             100% { transform: translateX(-100%); }
         }
 
-        /* TABS NAVIGATION */
         .nav-tabs {
             display: flex;
-            gap: 8px;
+            gap: 6px;
             overflow-x: auto;
-            padding-bottom: 8px;
-            margin-bottom: 20px;
+            padding-bottom: 6px;
+            margin-bottom: 15px;
             scrollbar-width: none;
         }
-        .nav-tabs::-webkit-scrollbar { display: none; }
 
         .tab-btn {
             background: var(--card-bg);
             border: 1px solid var(--border-glow);
             color: var(--text-main);
-            padding: 12px 18px;
-            border-radius: 12px;
+            padding: 10px 14px;
+            border-radius: 10px;
             cursor: pointer;
             font-weight: bold;
-            font-size: 13px;
+            font-size: 12px;
             white-space: nowrap;
-            transition: all 0.3s ease;
         }
 
         .tab-btn.active, .tab-btn:hover {
             background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
             color: white;
             border-color: transparent;
-            box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
         }
 
-        .section-content { display: none; animation: fadeIn 0.4s ease; }
+        .section-content { display: none; }
         .section-content.active { display: block; }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(8px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
 
         .card {
             background: var(--card-bg);
             backdrop-filter: blur(12px);
-            padding: 22px;
-            border-radius: 16px;
+            padding: 18px;
+            border-radius: 14px;
             border: 1px solid var(--border-glow);
-            margin-bottom: 20px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+            margin-bottom: 15px;
         }
 
-        .card h2 { color: var(--accent-cyan); margin-top: 0; font-size: 19px; }
+        .card h2 { color: var(--accent-cyan); margin-top: 0; font-size: 17px; }
 
-        .form-group { margin-bottom: 15px; }
-        label { display: block; margin-bottom: 6px; font-weight: bold; font-size: 13px; color: #cbd5e1; }
+        .form-group { margin-bottom: 12px; }
+        label { display: block; margin-bottom: 4px; font-weight: bold; font-size: 12px; color: #cbd5e1; }
         
-        input, select, textarea {
+        input, select {
             width: 100%;
-            padding: 12px;
-            border-radius: 10px;
+            padding: 10px;
+            border-radius: 8px;
             border: 1px solid var(--border-glow);
             background: rgba(6, 9, 19, 0.8);
             color: #fff;
             box-sizing: border-box;
-            font-size: 14px;
+            font-size: 13px;
         }
 
         .action-btn {
             width: 100%;
-            padding: 14px;
+            padding: 12px;
             background: linear-gradient(135deg, var(--accent-cyan), #0284c7);
             color: #060913;
             border: none;
-            border-radius: 10px;
+            border-radius: 8px;
             font-weight: bold;
             cursor: pointer;
-            font-size: 15px;
-            transition: all 0.2s ease;
+            font-size: 13px;
         }
-
-        .action-btn:hover { opacity: 0.9; transform: translateY(-1px); }
 
         .result-box {
-            margin-top: 15px;
-            padding: 15px;
+            margin-top: 10px;
+            padding: 10px;
             background: rgba(56, 189, 248, 0.08);
             border: 1px dashed var(--accent-cyan);
-            border-radius: 10px;
+            border-radius: 8px;
             display: none;
-            line-height: 1.6;
-            font-size: 14px;
+            font-size: 12px;
         }
 
-        /* GRID LAYOUTS */
         .grid-cards {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 15px;
-            margin-top: 15px;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 10px;
+            margin-top: 10px;
         }
 
         .pay-card {
             background: rgba(6, 9, 19, 0.7);
             border: 1px solid var(--border-glow);
-            padding: 18px;
-            border-radius: 14px;
+            padding: 12px;
+            border-radius: 12px;
             text-align: center;
         }
 
-        .pay-title { font-weight: bold; color: var(--accent-cyan); font-size: 15px; }
-        .pay-acc { font-size: 14px; font-weight: bold; color: var(--accent-gold); margin: 8px 0; }
+        .pay-title { font-weight: bold; color: var(--accent-cyan); font-size: 13px; }
+        .pay-acc { font-size: 13px; font-weight: bold; color: var(--accent-gold); margin: 4px 0; }
 
         footer {
-            margin-top: 25px;
+            margin-top: 15px;
             text-align: center;
-            font-size: 12px;
+            font-size: 11px;
             color: var(--text-muted);
             border-top: 1px solid var(--border-glow);
-            padding-top: 15px;
-            width: 100%;
+            padding-top: 12px;
         }
     </style>
-</head>
-<body>
+</head>  <body>
 
 <div class="container">
 
-    <!-- HEADER LOGO -->
     <header>
         <div class="logo-container">
             <div class="logo-icon">🌐</div>
             <h1>ኢትዮ ዲጂታል ሱፐር ፖርታል</h1>
         </div>
-        <p style="margin: 0; color: var(--text-muted); font-size: 13px;">መጻሕፍት፣ አፖች፣ የቀጥታ ዜናዎች፣ የስፖርት ውጤቶች እና የቴሌብር/Binance ክፍያዎች!</p>
+        <p style="margin: 0; color: var(--text-muted); font-size: 11px;">መጻሕፍት፣ አፖች፣ የቀጥታ ዜናዎች እና የክፍያ ማረጋገጫ!</p>
         <div class="badge-bar">
             <div class="user-badge">⭐ ነጥብ (Points): <span id="userPoints">0</span></div>
-            <div class="user-badge" style="border-color: var(--accent-green); color: var(--accent-green);">🟢 ሲስተም፡ ዝግጁ (Live)</div>
+            <div class="user-badge" style="border-color: var(--accent-green); color: var(--accent-green);">🟢 ሲስተም፡ ዝግጁ (App & Web)</div>
         </div>
     </header>
 
-    <!-- LIVE NEWS TICKER -->
     <div class="news-ticker">
-        <span class="ticker-title">ቀጥታ ዜና</span>
+        <span class="ticker-title">ሰበር ዜና</span>
         <div class="ticker-content">
-            🔥 በኢትዮ ዲጂታል ፖርታል አዳዲስ ፕሪሚየም መጻሕፍት እና አፖች ተጨምረዋል! | የቴሌብር፣ ንግድ ባንክ እና ባይናንስ (Binance Pay) ክፍያዎች አውቶማቲክ ሆነዋል!
+            🔥 አዳዲስ መጻሕፍት ታክለዋል! | ቴሌብር (0920836593)፣ ንግድ ባንክ (1000257160077) እና ባይናንስ (903527741) አውቶማቲክ ክፍያዎች በስራ ላይ ናቸው!
         </div>
     </div>
 
-    <!-- TABS -->
     <div class="nav-tabs">
-        <button class="tab-btn active" onclick="switchTab('booksTab', this)">📚 መጻሕፍት (Books)</button>
-        <button class="tab-btn" onclick="switchTab('appsTab', this)">📱 አፖች (Google Play)</button>
-        <button class="tab-btn" onclick="switchTab('paymentTab', this)">💳 ክፍያዎች (Payments)</button>
-        <button class="tab-btn" onclick="switchTab('aiTab', this)">🤖 Ethio AI ረዳት</button>
-        <button class="tab-btn" onclick="switchTab('spinTab', this)">🎮 ዕድል ዊል (Lucky Spin)</button>
-        <button class="tab-btn" onclick="switchTab('adminTab', this)">📤 የአድሚን ሰቀለያ</button>
+        <button class="tab-btn active" onclick="switchTab('booksTab', this)">📚 መጻሕፍት</button>
+        <button class="tab-btn" onclick="switchTab('appsTab', this)">📱 አፖች</button>
+        <button class="tab-btn" onclick="switchTab('paymentTab', this)">💳 ክፍያዎች</button>
+        <button class="tab-btn" onclick="switchTab('sportsTab', this)">⚽ ስፖርት</button>
+        <button class="tab-btn" onclick="switchTab('spinTab', this)">🎮 ዕድል ዊል</button>
+        <button class="tab-btn" onclick="switchTab('adminTab', this)">📤 አድሚን</button>
     </div>
 
     <!-- 1. BOOKS -->
     <div id="booksTab" class="section-content active">
         <div class="card">
-            <h2>🔍 ፈጣን የመጽሐፍ አሳሽ (AI Book Search)</h2>
+            <h2>📚 የመጻሕፍት ማዕከል</h2>
             <div class="form-group">
-                <label>የሚፈልጉትን የመጽሐፍ ስም ወይም ደራሲ ያስገቡ</label>
-                <input type="text" id="bookQuery" placeholder="ለምሳሌ፡ የልቦና ጥበብ፣ ፍቅር እስከ መቃብር...">
+                <label>መጽሐፍ ይፈልጉ</label>
+                <input type="text" id="bookQuery" placeholder="የመጽሐፍ ስም ያስገቡ...">
             </div>
             <button class="action-btn" onclick="searchBook()">መጽሐፉን ፈልግ</button>
             <div id="searchResult" class="result-box"></div>
@@ -304,17 +280,15 @@
     <!-- 2. APPS -->
     <div id="appsTab" class="section-content">
         <div class="card">
-            <h2>📱 ተወዳጅ አፖች (Google Play App Directory)</h2>
+            <h2>📱 የሞባይል አፖች ማዕከል</h2>
             <div class="grid-cards">
                 <div class="pay-card">
                     <div class="pay-title">🟢 Telebirr App</div>
-                    <p style="font-size: 12px; color: var(--text-muted);">የኢትዮ ቴሌኮም የክፍያ አፕ</p>
-                    <a href="https://play.google.com/store/apps/details?id=com.comviva.ethiopia.telebirr" target="_blank" class="action-btn" style="padding: 8px; font-size: 12px; text-decoration: none; display: block; margin-top: 10px;">▶ Play Store</a>
+                    <a href="https://play.google.com/store/apps/details?id=com.comviva.ethiopia.telebirr" target="_blank" class="action-btn" style="padding: 6px; font-size: 11px; text-decoration: none; display: block; margin-top: 6px;">▶ Play Store</a>
                 </div>
                 <div class="pay-card">
                     <div class="pay-title">✈️ Telegram App</div>
-                    <p style="font-size: 12px; color: var(--text-muted);">የመልእክት መለዋወጫ</p>
-                    <a href="https://play.google.com/store/apps/details?id=org.telegram.messenger" target="_blank" class="action-btn" style="padding: 8px; font-size: 12px; text-decoration: none; display: block; margin-top: 10px;">▶ Play Store</a>
+                    <a href="https://play.google.com/store/apps/details?id=org.telegram.messenger" target="_blank" class="action-btn" style="padding: 6px; font-size: 11px; text-decoration: none; display: block; margin-top: 6px;">▶ Play Store</a>
                 </div>
             </div>
         </div>
@@ -323,17 +297,17 @@
     <!-- 3. PAYMENTS -->
     <div id="paymentTab" class="section-content">
         <div class="card">
-            <h2>💳 የሀገር ውስጥ እና የውጭ ክፍያ መቀበያዎች</h2>
+            <h2>💳 የክፍያ አማራጮች</h2>
             <div class="grid-cards">
                 <div class="pay-card">
-                    <div class="pay-title">🟢 ቴሌብር (Telebirr)</div>
+                    <div class="pay-title">🟢 ቴሌብር</div>
                     <div class="pay-acc">0920836593</div>
                 </div>
                 <div class="pay-card">
-                    <div class="pay-title">🏦 ንግድ ባንክ (CBE)</div>
+                    <div class="pay-title">🏦 ንግድ ባንክ</div>
                     <div class="pay-acc">1000257160077</div>
                 </div>
-                <div class="pay-card" style="border-color: var(--accent-gold);">
+                <div class="pay-card">
                     <div class="pay-title" style="color: var(--accent-gold);">🟡 Binance Pay ID</div>
                     <div class="pay-acc">903527741</div>
                 </div>
@@ -341,9 +315,9 @@
         </div>
 
         <div class="card">
-            <h2>✅ የክፍያ ማረጋገጫ ማቀበያ (Payment Verification)</h2>
+            <h2>✅ የደረሰኝ ማረጋገጫ (Txn ID)</h2>
             <div class="form-group">
-                <label>የከፈሉበት የትራንዛክሽን ቁጥር (Txn ID / Ref)</label>
+                <label>የትራንዛክሽን ቁጥር (Txn ID)</label>
                 <input type="text" id="txnInput" placeholder="ለምሳሌ፡ 1092837465">
             </div>
             <button class="action-btn" style="background: var(--accent-green); color: white;" onclick="verifyPayment()">ክፍያውን አረጋግጥ</button>
@@ -351,46 +325,43 @@
         </div>
     </div>
 
-    <!-- 4. AI ASSISTANT -->
-    <div id="aiTab" class="section-content">
+    <!-- 4. SPORTS -->
+    <div id="sportsTab" class="section-content">
         <div class="card">
-            <h2>🤖 Ethio AI ረዳት (የቴክኖሎጂ እና የመጻሕፍት ረዳት)</h2>
-            <div class="form-group">
-                <label>የሚፈልጉትን ጥያቄ በአማርኛ ይጠይቁ</label>
-                <input type="text" id="aiQuery" placeholder="ለምሳሌ፡ ምርጥ የስነ-ልቦና መጻሕፍትን ጠቁመኝ...">
+            <h2>⚽ የቀጥታ ስፖርት ውጤቶች</h2>
+            <div class="pay-card" style="text-align: left;">
+                <div style="font-size: 12px; color: #cbd5e1;">⚽ ቅዱስ ጊዮርጊስ 2 - 1 ኢትዮጵያ ቡና</div>
+                <div style="font-size: 12px; color: #cbd5e1; margin-top: 4px;">⚽ አርሰናል 1 - 0 ማንቸስተር ዩናይትድ</div>
             </div>
-            <button class="action-btn" onclick="askAI()">ለኤአይ ረዳቱ ላክ</button>
-            <div id="aiResult" class="result-box"></div>
         </div>
     </div>
 
     <!-- 5. LUCKY SPIN -->
     <div id="spinTab" class="section-content">
         <div class="card" style="text-align: center;">
-            <h2>🎮 ዕድልዎን ይሞክሩ (Lucky Spin)</h2>
-            <p style="font-size: 13px; color: var(--text-muted);">የቀኑን ነፃ ነጥቦች ያሸንፉ!</p>
-            <div id="wheelBox" style="font-size: 18px; font-weight: bold; color: var(--accent-gold); margin: 20px 0; padding: 15px; border: 1px solid var(--accent-gold); border-radius: 10px;">🎁 ሽልማትዎ እዚህ ይታያል</div>
+            <h2>🎮 ዕድልዎን ይሞክሩ</h2>
+            <div id="wheelBox" style="font-size: 14px; font-weight: bold; color: var(--accent-gold); margin: 10px 0; padding: 10px; border: 1px solid var(--accent-gold); border-radius: 8px;">🎁 ሽልማትዎ እዚህ ይታያል</div>
             <button class="action-btn" style="background: var(--accent-gold); color: #060913;" onclick="spinWheel()">አሁን ያሽከርክሩ</button>
         </div>
     </div>
 
-    <!-- 6. ADMIN UPLOAD -->
+    <!-- 6. ADMIN -->
     <div id="adminTab" class="section-content">
         <div class="card">
-            <h2>📤 የአስተዳዳሪ ማዕከል (Admin Control Panel)</h2>
+            <h2>📤 የአስተዳዳሪ ማዕከል</h2>
             <div class="form-group">
-                <label>የአስተዳዳሪ ሚስጥር ቁጥር (Admin PIN)</label>
+                <label>PIN (147580)</label>
                 <input type="password" id="adminPin" placeholder="PIN ያስገቡ">
             </div>
             <div class="form-group">
-                <label>የመጽሐፍ/አፕ ርዕስ</label>
+                <label>ርዕስ</label>
                 <input type="text" id="adminTitle" placeholder="ስም ያስገቡ">
             </div>
             <div class="form-group">
-                <label>የማውረጃ ሊንክ (Download Link)</label>
+                <label>ሊንክ</label>
                 <input type="url" id="adminLink" placeholder="https://...">
             </div>
-            <button class="action-btn" onclick="adminPublish()">በራስ-ሰር ጫን (Publish)</button>
+            <button class="action-btn" onclick="adminPublish()">በራስ-ሰር ጫን</button>
             <div id="adminResult" class="result-box"></div>
         </div>
     </div>
@@ -415,7 +386,7 @@
         const resBox = document.getElementById('searchResult');
         if(!query) { alert('እባክዎ የመጽሐፍ ስም ያስገቡ!'); return; }
         resBox.style.display = 'block';
-        resBox.innerHTML = `⏳ <b>${query}</b> በመፈለግ ላይ...<br><br>✅ <b>የተገኘ ውጤት፦</b><br>📄 ርዕስ፡ ${query}<br>💳 <b>ዋጋ፡ 50.00 ብር (ወይም $1 USDT)</b><br>📥 <a href="#" onclick="alert('እባክዎ ክፍያውን ያረጋግጡ!')" style="color:#38bdf8; font-weight:bold;">መጽሐፉን ለማውረድ እዚህ ይጫኑ</a>`;
+        resBox.innerHTML = `⏳ <b>${query}</b> በመፈለግ ላይ...<br><br>✅ <b>የተገኘ ውጤት፦</b><br>📄 ርዕስ፡ ${query}<br>💳 <b>ዋጋ፡ 50 ብር (ወይም $1 USDT)</b><br>📥 <a href="#" onclick="alert('ክፍያውን ካረጋገጡ በኋላ ይከፈታል!')" style="color:#38bdf8; font-weight:bold;">መጽሐፉን ለማንበብ እዚህ ይጫኑ</a>`;
     }
 
     function verifyPayment() {
@@ -425,22 +396,13 @@
         resBox.style.display = 'block';
         resBox.style.backgroundColor = 'rgba(34, 197, 94, 0.15)';
         resBox.style.color = '#4ade80';
-        resBox.innerHTML = `✅ <b>የክፍያ ማረጋገጫ ተቀብለናል!</b><br>🔢 Txn ID፦ ${txn}<br>መረጃው በሲስተሙ ተጣርቶ ይዘቱ በጥቂት ሰከንዶች ውስጥ ይከፈታል።`;
-    }
-
-    function askAI() {
-        const q = document.getElementById('aiQuery').value.trim();
-        const resBox = document.getElementById('aiResult');
-        if(!q) { alert('እባክዎ ጥያቄዎን ይጻፉ!'); return; }
-        resBox.style.display = 'block';
-        resBox.innerHTML = `🤖 <b>የኤአይ ምላሽ፦</b><br>ስለ "<b>${q}</b>" ላቀረቡት ጥያቄ፦ በፖርታላችን ላይ ያሉትን የ "መጻሕፍት" እና የ "አፖች" ክፍሎች ቢጎበኙ የተሻሉ አማራጮችን ያገኛሉ!`;
+        resBox.innerHTML = `✅ <b>የክፍያ ማረጋገጫ ተቀብለናል!</b><br>🔢 Txn ID፦ ${txn}<br>ይዘቱ ተከፍቷል።`;
     }
 
     function spinWheel() {
         const prizes = [
             { text: "🎉 10 ነጥቦችን አግኝተዋል!", points: 10 },
-            { text: "📚 1 ነጻ ፕሪሚየም መጽሐፍ ተሸልመዋል!", points: 5 },
-            { text: "🎉 25 ነጥቦችን አግኝተዋል!", points: 25 }
+            { text: "📚 1 ነጻ መጽሐፍ ተሸልመዋል!", points: 5 }
         ];
         const selected = prizes[Math.floor(Math.random() * prizes.length)];
         document.getElementById('wheelBox').innerText = selected.text;
@@ -454,7 +416,7 @@
         const link = document.getElementById('adminLink').value.trim();
         const resBox = document.getElementById('adminResult');
 
-        if(pin !== "147580") { alert('የተሳሳተ የአስተዳዳሪ PIN ቁጥር!'); return; }
+        if(pin !== "147580") { alert('የተሳሳተ PIN ቁጥር!'); return; }
         if(!title || !link) { alert('እባክዎ ስም እና ሊንክ ያስገቡ!'); return; }
 
         resBox.style.display = 'block';
