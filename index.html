@@ -1,620 +1,302 @@
-<!DOCTYPE html>
+
+<!doctype html>
 <html lang="am">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ኢትዮ ዲጂታል ሱፐር ፖርታል - Global Enterprise Portal</title>
-    
-    <!-- PWA Meta Tags -->
-    <meta name="theme-color" content="#060913">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="Ethio Super Portal">
-
-    <!-- GOOGLE TRANSLATE INTEGRATION SCRIPT -->
-    <script type="text/javascript">
-        function googleTranslateElementInit() {
-            new google.translate.TranslateElement({
-                pageLanguage: 'am',
-                includedLanguages: 'am,om,ti,en,ar,fr,es',
-                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-            }, 'google_translate_element');
-        }
-    </script>
-    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
-    <style>
-        :root {
-            --bg-color: #060913;
-            --card-bg: rgba(15, 23, 42, 0.9);
-            --accent-cyan: #38bdf8;
-            --accent-green: #22c55e;
-            --accent-gold: #f59e0b;
-            --accent-purple: #a855f7;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --border-glow: rgba(56, 189, 248, 0.25);
-        }
-
-        body {
-            font-family: 'Segoe UI', Roboto, sans-serif;
-            background: radial-gradient(circle at top center, #1e1b4b 0%, #060913 70%);
-            color: var(--text-main);
-            margin: 0;
-            padding: 10px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-        }
-
-        .container { max-width: 1050px; width: 100%; padding-bottom: 80px; }
-
-        /* TRANSLATOR BAR */
-        .translate-bar {
-            width: 100%;
-            background: rgba(15, 23, 42, 0.95);
-            border: 1px solid var(--accent-cyan);
-            border-radius: 12px;
-            padding: 8px 12px;
-            margin-bottom: 12px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-sizing: border-box;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-
-        .translate-title { font-size: 12px; font-weight: bold; color: var(--accent-cyan); }
-
-        /* AD SLIDER BAR */
-        .ad-slider-bar {
-            width: 100%;
-            background: linear-gradient(90deg, rgba(168,85,247,0.2), rgba(56,189,248,0.2));
-            border: 1px solid var(--accent-purple);
-            border-radius: 12px;
-            padding: 10px 14px;
-            margin-bottom: 12px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-sizing: border-box;
-        }
-
-        .ad-slide-text { font-size: 12px; font-weight: bold; color: var(--accent-gold); }
-
-        header {
-            text-align: center;
-            padding: 20px 15px;
-            background: var(--card-bg);
-            backdrop-filter: blur(16px);
-            border-radius: 20px;
-            border: 1px solid var(--border-glow);
-            margin-bottom: 12px;
-            box-shadow: 0 0 25px rgba(56, 189, 248, 0.15);
-        }
-
-        .logo-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            margin-bottom: 6px;
-        }
-
-        .logo-icon {
-            width: 46px;
-            height: 46px;
-            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            box-shadow: 0 0 15px var(--accent-cyan);
-        }
-
-        h1 {
-            background: linear-gradient(to right, #38bdf8, #a855f7, #f59e0b);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin: 0;
-            font-size: 24px;
-            font-weight: 800;
-        }
-
-        .badge-bar {
-            display: flex;
-            justify-content: center;
-            gap: 8px;
-            flex-wrap: wrap;
-            margin-top: 10px;
-        }
-
-        .user-badge {
-            background: rgba(245, 158, 11, 0.15);
-            border: 1px solid var(--accent-gold);
-            color: var(--accent-gold);
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 11px;
-            font-weight: bold;
-        }
-
-        /* DUAL TICKERS */
-        .ticker-container {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-            margin-bottom: 12px;
-        }
-
-        .news-ticker {
-            background: rgba(15, 23, 42, 0.9);
-            border: 1px solid var(--border-glow);
-            border-radius: 10px;
-            padding: 6px 12px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 12px;
-            overflow: hidden;
-        }
-
-        .ticker-title {
-            padding: 2px 8px;
-            border-radius: 6px;
-            font-weight: bold;
-            font-size: 10px;
-            white-space: nowrap;
-        }
-
-        .ticker-content {
-            color: var(--text-muted);
-            white-space: nowrap;
-            animation: ticker 30s linear infinite;
-        }
-
-        @keyframes ticker {
-            0% { transform: translateX(100%); }
-            100% { transform: translateX(-100%); }
-        }
-
-        /* NAVIGATION TABS */
-        .nav-tabs {
-            display: flex;
-            gap: 6px;
-            overflow-x: auto;
-            padding-bottom: 6px;
-            margin-bottom: 12px;
-            scrollbar-width: none;
-        }
-        .nav-tabs::-webkit-scrollbar { display: none; }
-
-        .tab-btn {
-            background: var(--card-bg);
-            border: 1px solid var(--border-glow);
-            color: var(--text-main);
-            padding: 10px 14px;
-            border-radius: 10px;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 12px;
-            white-space: nowrap;
-            transition: all 0.3s ease;
-        }
-
-        .tab-btn.active, .tab-btn:hover {
-            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
-            color: white;
-            border-color: transparent;
-            box-shadow: 0 0 12px rgba(56, 189, 248, 0.3);
-        }
-
-        .section-content { display: none; }
-        .section-content.active { display: block; }
-
-        .card {
-            background: var(--card-bg);
-            backdrop-filter: blur(12px);
-            padding: 18px;
-            border-radius: 14px;
-            border: 1px solid var(--border-glow);
-            margin-bottom: 12px;
-        }
-
-        .card h2 { color: var(--accent-cyan); margin-top: 0; font-size: 17px; }
-
-        .form-group { margin-bottom: 10px; }
-        label { display: block; margin-bottom: 4px; font-weight: bold; font-size: 12px; color: #cbd5e1; }
-        
-        input, select, textarea {
-            width: 100%;
-            padding: 10px;
-            border-radius: 8px;
-            border: 1px solid var(--border-glow);
-            background: rgba(6, 9, 19, 0.8);
-            color: #fff;
-            box-sizing: border-box;
-            font-size: 13px;
-        }
-
-        .action-btn {
-            width: 100%;
-            padding: 12px;
-            background: linear-gradient(135deg, var(--accent-cyan), #0284c7);
-            color: #060913;
-            border: none;
-            border-radius: 8px;
-            font-weight: bold;
-            cursor: pointer;
-            font-size: 13px;
-        }
-
-        .grid-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 10px;
-            margin-top: 10px;
-        }
-
-        .web-card {
-            background: rgba(6, 9, 19, 0.7);
-            border: 1px solid var(--border-glow);
-            padding: 12px;
-            border-radius: 12px;
-            text-align: center;
-        }
-
-        .web-card-title { font-weight: bold; color: var(--accent-cyan); font-size: 13px; margin-bottom: 4px; }
-        .web-card-desc { font-size: 11px; color: var(--text-muted); margin-bottom: 8px; }
-
-        /* MODAL STYLING FOR FREE READER */
-        .modal-overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(6, 9, 19, 0.9);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 999;
-            padding: 15px;
-        }
-
-        .modal-body {
-            background: var(--card-bg);
-            border: 1px solid var(--accent-cyan);
-            border-radius: 16px;
-            max-width: 650px;
-            width: 100%;
-            padding: 20px;
-            max-height: 80vh;
-            overflow-y: auto;
-        }
-
-        /* EMOJI REACTION BAR */
-        .emoji-bar {
-            display: flex;
-            gap: 10px;
-            margin-top: 8px;
-            justify-content: center;
-            font-size: 18px;
-            cursor: pointer;
-        }
-
-        footer {
-            margin-top: 20px;
-            text-align: center;
-            font-size: 11px;
-            color: var(--text-muted);
-            border-top: 1px solid var(--border-glow);
-            padding-top: 12px;
-            width: 100%;
-        }
-    </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#07111f">
+<meta name="description" content="Ethio Digital Super Portal — የእውቀት ማዕከል፣ የውጭ ውድድር ሊንኮች፣ ነፃ ጥያቄዎችና የእውቀት ዊል።">
+<title>Ethio Digital Super Portal | ኢትዮ ዲጂታል ሱፐር ፖርታል</title>
+<style>
+:root{color-scheme:dark;--bg:#06101d;--panel:#101e32;--panel2:#0b1728;--line:#29415d;--text:#f3f7ff;--muted:#b7c5d8;--cyan:#38bdf8;--gold:#fbbf24;--green:#34d399;--purple:#a78bfa;--red:#fb7185}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(ellipse at top,#162e50 0,#06101d 58%);color:var(--text);font:16px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif}
+a{color:#7dd3fc}
+button,input{font:inherit}
+button{cursor:pointer}
+.wrap{max-width:1120px;margin:auto;padding:16px}
+.topline{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;padding:10px 0 18px}
+.brand{display:flex;align-items:center;gap:12px}
+.brandmark{width:56px;height:56px;border-radius:17px;display:grid;place-items:center;background:linear-gradient(135deg,#38bdf8,#a78bfa 70%,#fbbf24);color:#07111f;font-size:29px;box-shadow:0 8px 30px #38bdf833}
+.brand h1{font-size:clamp(1.15rem,4vw,1.75rem);line-height:1.2;margin:0}
+.brand p{margin:4px 0 0;color:var(--muted);font-size:.85rem}
+.status{border:1px solid #6d5cc4;border-radius:999px;padding:5px 11px;font-size:.78rem;color:#ddd6fe}
+.hero{padding:clamp(22px,5vw,44px);border:1px solid var(--line);border-radius:26px;background:linear-gradient(135deg,#102640,#10162d 78%);box-shadow:0 20px 60px #0003}
+.eyebrow{color:var(--cyan);font-weight:850;letter-spacing:.03em;font-size:.88rem}
+.hero h2{font-size:clamp(1.8rem,5vw,3.15rem);line-height:1.17;margin:10px 0}
+.hero p{max-width:780px;color:var(--muted);margin:0 0 20px}
+.actions{display:flex;gap:10px;flex-wrap:wrap}
+.btn{display:inline-flex;justify-content:center;align-items:center;text-decoration:none;border:0;border-radius:12px;padding:11px 17px;font-weight:850;background:linear-gradient(135deg,#67e8f9,#38bdf8);color:#06111f}
+.btn.secondary{background:#172942;border:1px solid var(--line);color:var(--text)}
+.btn.gold{background:linear-gradient(135deg,#fde68a,#f59e0b);color:#241600}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.notice{margin:14px 0;padding:13px 15px;border:1px solid #a16207;border-radius:12px;background:#42200655;color:#fde68a;font-size:.91rem}
+.ticker{overflow:hidden;border:1px solid #25516a;background:#071b2b;border-radius:12px;margin:14px 0;display:flex;align-items:center;gap:12px;padding:9px 12px}
+.ticker b{white-space:nowrap;color:var(--gold)}
+.ticker span{color:#d5e9f8}
+.grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:14px;margin-top:14px}
+.card{grid-column:span 12;background:linear-gradient(160deg,#101e32,#0a1728);border:1px solid var(--line);border-radius:18px;padding:20px;min-width:0}
+.half{grid-column:span 6}
+.third{grid-column:span 4}
+.card h3{margin:0 0 8px;font-size:1.2rem}
+.muted{color:var(--muted)}
+.tag{display:inline-block;border:1px solid #256c88;color:#a5f3fc;border-radius:999px;padding:3px 9px;font-size:.78rem;margin:2px 4px 2px 0}
+.small{font-size:.86rem}
+.linkgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:14px}
+.linkcard{display:flex;flex-direction:column;gap:6px;padding:14px;border:1px solid var(--line);border-radius:13px;background:#071525;text-decoration:none;color:var(--text);transition:transform .15s,border-color .15s}
+.linkcard:hover{transform:translateY(-2px);border-color:var(--cyan)}
+.linkcard strong{color:#bae6fd}
+.linkcard span{font-size:.85rem;color:var(--muted)}
+.quizq{padding:13px;margin:12px 0;border:1px solid var(--line);border-radius:12px;background:#07111f}
+.quizq p{margin:0 0 8px;font-weight:750}
+.quizq label{display:block;padding:4px 0;color:var(--muted)}
+.quizq input{accent-color:var(--cyan)}
+.result{display:none;margin-top:14px;padding:14px;border:1px solid #0f766e;background:#042f2e;border-radius:12px}
+.result.show{display:block}
+.result.warn{border-color:#a16207;background:#42200655;color:#fde68a}
+.wheelwrap{display:grid;grid-template-columns:minmax(230px,320px) 1fr;gap:20px;align-items:center}
+.wheelbox{position:relative;width:min(100%,310px);aspect-ratio:1;margin:8px auto}
+.wheel{width:100%;height:100%;border-radius:50%;border:7px solid #e2e8f0;box-shadow:0 0 0 5px #172942,0 12px 28px #0006;background:conic-gradient(#38bdf8 0deg 60deg,#fbbf24 60deg 120deg,#a78bfa 120deg 180deg,#34d399 180deg 240deg,#fb7185 240deg 300deg,#60a5fa 300deg 360deg);transition:transform 4s cubic-bezier(.12,.72,.12,1);position:relative}
+.wheel:after{content:"";position:absolute;inset:27%;border-radius:50%;background:#07111f;border:4px solid #e2e8f0;box-shadow:0 0 0 3px #07111f}
+.pointer{position:absolute;z-index:2;top:-4px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:17px solid transparent;border-right:17px solid transparent;border-top:34px solid #fff;filter:drop-shadow(0 3px 3px #0008)}
+.wheel-label{position:absolute;inset:0;pointer-events:none;border-radius:50%;font-size:.72rem;font-weight:900;color:#06111f}
+.wheel-label span{position:absolute;left:50%;top:9%;transform:translateX(-50%);width:88px;text-align:center}
+.wheel-label span:nth-child(2){left:76%;top:28%;transform:translate(-50%,-50%) rotate(60deg)}
+.wheel-label span:nth-child(3){left:76%;top:72%;transform:translate(-50%,-50%) rotate(120deg)}
+.wheel-label span:nth-child(4){left:50%;top:83%;transform:translate(-50%,-50%) rotate(180deg)}
+.wheel-label span:nth-child(5){left:24%;top:72%;transform:translate(-50%,-50%) rotate(240deg)}
+.wheel-label span:nth-child(6){left:24%;top:28%;transform:translate(-50%,-50%) rotate(300deg)}
+.rules{padding-left:22px}
+.rules li{margin:7px 0}
+.sponsor{border:1px dashed #526985;border-radius:12px;padding:13px;color:var(--muted)}
+footer{margin:25px 0 8px;padding:18px 4px;border-top:1px solid var(--line);color:var(--muted);font-size:.85rem}
+footer a{margin-right:12px}
+.pill{display:inline-block;padding:4px 9px;border-radius:999px;background:#102e2b;border:1px solid #176c5e;color:#a7f3d0;font-size:.78rem}
+.banner{border:1px dashed #45617e;border-radius:14px;padding:16px;background:linear-gradient(100deg,#101f35,#12283d);display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.banner strong{color:#fde68a}
+.banner p{margin:4px 0 0;color:var(--muted)}
+@media(max-width:720px){.wrap{padding:12px}.half,.third{grid-column:span 12}.wheelwrap{grid-template-columns:1fr}.linkgrid{grid-template-columns:1fr}.topline{align-items:flex-start}.hero{border-radius:18px}.card{padding:16px}.brandmark{width:46px;height:46px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+</style>
 </head>
 <body>
+<div class="wrap">
+<header class="topline">
+<div class="brand">
+<div class="brandmark" aria-hidden="true">🌐</div>
+<div>
+<h1>ኢትዮ ዲጂታል ሱፐር ፖርታል</h1>
+<p>እውቀት • ቴክኖሎጂ • ግንኙነት • ግልጽነት</p>
+</div>
+</div>
+<span class="status">የመጀመሪያ ስሪት</span>
+</header>
 
-<div class="container">
+<section class="hero">
+<div class="eyebrow">🌍 አንድ ፖርታል፤ ብዙ የእውቀት በሮች</div>
+<h2>የሚፈልጉትን ያግኙ፤<br>ወደ ታመኑ ድረ-ገጾች ይግቡ</h2>
+<p>ይህ ፖርታል የእውቀት ጥያቄዎችን ያቀርባል፣ የውጭ ውድድርና የትምህርት ድረ-ገጾችን በሊንክ ያገናኛል፣ እንዲሁም በነጻ የእውቀት ዊል ሙከራ ያቀርባል። የውጭ ድረ-ገጾች የራሳቸው ደንብና ፖሊሲ አላቸው።</p>
+<div class="actions">
+<a class="btn" href="#external">የውጭ ድረ-ገጾችን ክፈት</a>
+<a class="btn secondary" href="#quiz">የእውቀት ጥያቄዎች</a>
+<a class="btn gold" href="#wheel">ነፃ ዊል</a>
+</div>
+</section>
 
-    <!-- TRANSLATOR BAR -->
-    <div class="translate-bar">
-        <span class="translate-title">🌐 ቋንቋ ይምረጡ (Select Language):</span>
-        <div id="google_translate_element"></div>
-    </div>
-
-    <!-- AD SLIDER BAR -->
-    <div class="ad-slider-bar">
-        <div class="ad-slide-text" id="adSlideText">📢 ድርጅትዎን በፖርታላችን አናት ላይ ያስተዋውቁ! በወር 300 ብር ብቻ።</div>
-        <button class="action-btn" style="width: auto; padding: 4px 10px; font-size: 11px; background: var(--accent-gold); color: #060913;" onclick="switchTab('adApplyTab', null)">ማስታወቂያ ለማስበዛት</button>
-    </div>
-
-    <!-- HEADER LOGO -->
-    <header>
-        <div class="logo-container">
-            <div class="logo-icon">🌐</div>
-            <h1>ኢትዮ ዲጂታል ሱፐር ፖርታል</h1>
-        </div>
-        <p style="margin: 0; color: var(--text-muted); font-size: 12px;">መጻሕፍት፣ አፖች፣ ስፖርት፣ ጌሞች፣ ሃይማኖታዊ ሚዲያዎች፣ ክሪፕቶ፣ ገበያ እና የስፔስ ሳይንስ!</p>
-        <div class="badge-bar">
-            <div class="user-badge">⭐ ነጥብ (Points): <span id="userPoints">0</span></div>
-            <div class="user-badge" style="border-color: var(--accent-green); color: var(--accent-green);">🟢 ሲስተም፡ ዝግጁ (Global Ecosystem)</div>
-        </div>
-    </header>
-
-    <!-- DUAL TICKERS -->
-    <div class="ticker-container">
-        <div class="news-ticker">
-            <span class="ticker-title" style="background:#ef4444; color:white;">ሰበር ዜና</span>
-            <div class="ticker-content">
-                🔥 አዳዲስ ሃይማኖታዊ ቲቪዎች፣ የቤቲንግ ሳይቶች፣ የክሪፕቶ ከረንሲዎች እና የስፔስ ሳይንስ ማህደሮች ተገናኝተዋል!
-            </div>
-        </div>
-        <div class="news-ticker" style="border-color: rgba(34, 197, 94, 0.3);">
-            <span class="ticker-title" style="background:var(--accent-green); color:#060913;">የክፍያ ኖቲፊኬሽን</span>
-            <div class="ticker-content" style="color: var(--accent-green);">
-                ✅ Txn #10928374 ቴሌብር 50 ETB ገቢ ሆኗል | ✅ Txn #8837261 Binance Pay $1.00 USDT ማረጋገጫ ተጠናቋል!
-            </div>
-        </div>
-    </div>
-
-    <!-- MAIN NAVIGATION TABS -->
-    <div class="nav-tabs">
-        <button class="tab-btn active" onclick="switchTab('booksTab', this)">📚 መጻሕፍት</button>
-        <button class="tab-btn" onclick="switchTab('religiousTab', this)">🕌 ⛪ ሃይማኖታዊ ሚዲያ</button>
-        <button class="tab-btn" onclick="switchTab('moviesTab', this)">🎬 ፊልም & ሙዚቃ</button>
-        <button class="tab-btn" onclick="switchTab('gamesTab', this)">🎮 ጌሞች & ቤቲንግ</button>
-        <button class="tab-btn" onclick="switchTab('shoppingTab', this)">🛒 ገበያ & ክሪፕቶ</button>
-        <button class="tab-btn" onclick="switchTab('spaceTab', this)">🚀 ስፔስ & ቱሪዝም</button>
-        <button class="tab-btn" onclick="switchTab('paymentTab', this)">💳 ክፍያዎች</button>
-        <button class="tab-btn" onclick="switchTab('feedbackTab', this)">💬 አስተያየት & ላይክ</button>
-        <button class="tab-btn" onclick="switchTab('adminTab', this)">📤 አድሚን</button>
-    </div>
-
-    <!-- 1. BOOKS HUB -->
-    <div id="booksTab" class="section-content active">
-        <div class="card">
-            <h2>📚 የነጻ እና የክፍያ መጻሕፍት ማህደር</h2>
-            <div class="grid-cards">
-                <div class="web-card">
-                    <div class="web-card-title">📗 የነጻ መጻሕፍት ማህደር</div>
-                    <div class="web-card-desc">አጫጭር ታሪኮች - እዚሁ ይነበባሉ</div>
-                    <button class="action-btn" onclick="openFreeReaderModal('የአጭር ታሪኮች ማህደር', 'እንኳን ወደ ነጻ መጻሕፍት ማህደር በሰላም መጡ! ይህ መጽሐፍ በኢትዮ ዲጂታል ሱፐር ፖርታል አማካኝነት በነጻ የቀረበ ነው። ታሪኩን እዚሁ በስልክዎ ወይም በኮምፒዩተርዎ ላይ በደስታ ማንበብ ይችላሉ።')">📖 አሁን አንብብ (FREE)</button>
-                </div>
-                <div class="web-card" style="border-color: var(--accent-gold);">
-                    <div class="web-card-title" style="color:var(--accent-gold);">📙 የኢትዮጵያ ታሪክ (VIP)</div>
-                    <div class="web-card-desc">ታሪካዊና ምስጢራዊ - 50.00 ብር</div>
-                    <button class="action-btn" style="background:var(--accent-gold); color:#060913;" onclick="switchTab('paymentTab', null)">🔓 በክፍያ ክፈት</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 2. RELIGIOUS MEDIA HUB -->
-    <div id="religiousTab" class="section-content">
-        <div class="card">
-            <h2>🕌 ⛪ የሀይማኖታዊ ሚዲያዎች፣ ቲቪዎች እና ሬዲዮዎች</h2>
-            <div class="grid-cards">
-                <div class="web-card">
-                    <div class="web-card-title">🕌 Minber TV (ሚንበር ቲቪ)</div>
-                    <div class="web-card-desc">እስላማዊ ትምህርቶች እና ዜናዎች</div>
-                    <a href="https://www.youtube.com/@MinberTV" target="_blank" class="action-btn" style="text-decoration:none; display:block;">🔴 የቀጥታ ስርጭት</a>
-                </div>
-                <div class="web-card">
-                    <div class="web-card-title">🕌 Africa TV</div>
-                    <div class="web-card-desc">እስላማዊ ስርጭቶች</div>
-                    <a href="https://www.youtube.com/@africatv1" target="_blank" class="action-btn" style="text-decoration:none; display:block;">🔴 የቀጥታ ስርጭት</a>
-                </div>
-                <div class="web-card">
-                    <div class="web-card-title">⛪ EOTCTV (ኦርቶዶክስ)</div>
-                    <div class="web-card-desc">የኢትዮጵያ ኦርቶዶክስ ተዋህዶ ቲቪ</div>
-                    <a href="https://www.youtube.com/@eotctvchannel" target="_blank" class="action-btn" style="text-decoration:none; display:block;">🔴 የቀጥታ ስርጭት</a>
-                </div>
-                <div class="web-card">
-                    <div class="web-card-title">✝️ Gospel TV</div>
-                    <div class="web-card-desc">ወንጌላዊ የክርስቲያን ቲቪ</div>
-                    <a href="https://www.youtube.com" target="_blank" class="action-btn" style="text-decoration:none; display:block;">🔴 የቀጥታ ስርጭት</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 3. MOVIES & MUSIC -->
-    <div id="moviesTab" class="section-content">
-        <div class="card">
-            <h2>🎬 ፊልሞች፣ ሙዚቃ እና መዝናኛ</h2>
-            <div class="grid-cards">
-                <div class="web-card">
-                    <div class="web-card-title">🇪🇹 Sodere TV</div>
-                    <div class="web-card-desc">የኢትዮጵያ ፊልሞች እና ድራማዎች</div>
-                    <a href="https://sodere.com" target="_blank" class="action-btn" style="text-decoration:none; display:block;">▶ ፊልም ተመልከት</a>
-                </div>
-                <div class="web-card">
-                    <div class="web-card-title">🎬 Tubi Free Movies</div>
-                    <div class="web-card-desc">ነጻ የሆሊዉድ ፊልሞች</div>
-                    <a href="https://tubitv.com" target="_blank" class="action-btn" style="text-decoration:none; display:block;">▶ ፊልም ተመልከት</a>
-                </div>
-                <div class="web-card">
-                    <div class="web-card-title">🎵 Spotify Web</div>
-                    <div class="web-card-desc">አለም አቀፍ ሙዚቃዎች</div>
-                    <a href="https://open.spotify.com" target="_blank" class="action-btn" style="text-decoration:none; display:block;">▶ ሙዚቃ አዳምጥ</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 4. GAMES & BETTING HUB -->
-    <div id="gamesTab" class="section-content">
-        <div class="card">
-            <h2>🎮 ጌሞች እና የካሲኖ/ቤቲንግ ሳይቶች</h2>
-            <div class="grid-cards">
-                <div class="web-card">
-                    <div class="web-card-title">🕹️ Poki Games</div>
-                    <a href="https://poki.com" target="_blank" class="action-btn" style="text-decoration:none; display:block;">🎮 ጌም ጀምር</a>
-                </div>
-                <div class="web-card">
-                    <div class="web-card-title">🎯 Habesha Betting</div>
-                    <a href="https://habeshabets.com" target="_blank" class="action-btn" style="text-decoration:none; display:block;">⚽ ቤቲንግ ተጫወት</a>
-                </div>
-                <div class="web-card">
-                    <div class="web-card-title">🎰 Betika Ethiopia</div>
-                    <a href="https://www.betika.et" target="_blank" class="action-btn" style="text-decoration:none; display:block;">⚽ ቤቲንግ ተጫወት</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 5. SHOPPING & CRYPTO -->
-    <div id="shoppingTab" class="section-content">
-        <div class="card">
-            <h2>🛒 የኦንላይን ገበያ እና የክሪፕቶ ከረንሲ ማዕከል</h2>
-            <div class="grid-cards">
-                <div class="web-card">
-                    <div class="web-card-title">🛍️ Jumia Ethiopia</div>
-                    <a href="https://www.jumia.com" target="_blank" class="action-btn" style="text-decoration:none; display:block;">🛒 ገበያ ውጣ</a>
-                </div>
-                <div class="web-card">
-                    <div class="web-card-title">🪙 Binance Crypto</div>
-                    <a href="https://www.binance.com" target="_blank" class="action-btn" style="text-decoration:none; display:block;">📈 ክሪፕቶ ንግድ</a>
-                </div>
-                <div class="web-card">
-                    <div class="web-card-title">📊 CoinMarketCap</div>
-                    <a href="https://coinmarketcap.com" target="_blank" class="action-btn" style="text-decoration:none; display:block;">📊 ዋጋዎችን ተከታተል</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 6. SPACE & TOURISM -->
-    <div id="spaceTab" class="section-content">
-        <div class="card">
-            <h2>🚀 የስፔስ ሳይንስ፣ ቱሪዝም እና ብርቅዬ ቅርሶች</h2>
-            <div class="grid-cards">
-                <div class="web-card">
-                    <div class="web-card-title">🚀 NASA Science</div>
-                    <a href="https://www.nasa.gov" target="_blank" class="action-btn" style="text-decoration:none; display:block;">🌌 ስፔስን ጎብኝ</a>
-                </div>
-                <div class="web-card">
-                    <div class="web-card-title">🇪🇹 Visit Ethiopia Tourism</div>
-                    <a href="https://visitethiopia.et" target="_blank" class="action-btn" style="text-decoration:none; display:block;">🏛️ ቅርሶችን ጎብኝ</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 7. PAYMENTS -->
-    <div id="paymentTab" class="section-content">
-        <div class="card">
-            <h2>💳 የክፍያ አማራጮች (Payment Gateways)</h2>
-            <div class="grid-cards">
-                <div class="web-card">
-                    <div class="web-card-title">🟢 ቴሌብር (Telebirr)</div>
-                    <div style="font-weight:bold; color:var(--accent-gold); margin:6px 0;">0920836593</div>
-                </div>
-                <div class="web-card">
-                    <div class="web-card-title">🏦 ንግድ ባንክ (CBE)</div>
-                    <div style="font-weight:bold; color:var(--accent-gold); margin:6px 0;">1000257160077</div>
-                </div>
-                <div class="web-card" style="border-color:var(--accent-gold);">
-                    <div class="web-card-title" style="color:var(--accent-gold);">🟡 Binance Pay ID</div>
-                    <div style="font-weight:bold; color:var(--accent-gold); margin:6px 0;">903527741</div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 8. FEEDBACK & COMMENTS -->
-    <div id="feedbackTab" class="section-content">
-        <div class="card">
-            <h2>💬 አስተያየት፣ ደረጃ (Rating) እና ላይክ መስጫ</h2>
-            <div style="text-align: center; margin-bottom: 12px;">
-                <div style="font-size: 14px; font-weight: bold; color: var(--accent-gold);">ፖርታሉን ደረጃ ይስጡት (Rate Us):</div>
-                <div style="font-size: 22px; cursor: pointer;" onclick="alert('እናመሰግናለን! 5 ኮከብ ሰጥተዋል።')">⭐ ⭐ ⭐ ⭐ ⭐</div>
-                <div class="emoji-bar">
-                    <span onclick="addEmojiReaction('❤️')">❤️</span>
-                    <span onclick="addEmojiReaction('🔥')">🔥</span>
-                    <span onclick="addEmojiReaction('👍')">👍</span>
-                    <span onclick="addEmojiReaction('👏')">👏</span>
-                    <span onclick="addEmojiReaction('🇪🇹')">🇪🇹</span>
-                    <span onclick="addEmojiReaction('🚀')">🚀</span>
-                </div>
-            </div>
-            <div class="form-group">
-                <label>የእርስዎ አስተያየት</label>
-                <textarea id="userComment" rows="3" placeholder="አስተያየትዎን እዚህ ይጻፉ..."></textarea>
-            </div>
-            <button class="action-btn" onclick="submitComment()">አስተያየት ላክ</button>
-            <div id="commentBox" style="margin-top: 12px;"></div>
-        </div>
-    </div>
-
-    <!-- 9. ADMIN PANEL -->
-    <div id="adminTab" class="section-content">
-        <div class="card">
-            <h2>📤 የአስተዳዳሪ መቆጣጠሪያ (Admin Control Panel)</h2>
-            <div class="form-group">
-                <label>የአድሚን ፒን (Admin PIN: 147580)</label>
-                <input type="password" id="adminPin" placeholder="PIN ያስገቡ">
-            </div>
-            <button class="action-btn" onclick="adminPublish()">በራስ-ሰር ጫን (Publish)</button>
-        </div>
-    </footer>
+<div class="ticker" aria-label="የፖርታሉ ማስታወቂያ">
+<b>📢 ማስታወቂያ</b>
+<span id="tickerText">በEthio Digital Super Portal እውቀትን ይፈትሹ፤ ወደ ውጭ የትምህርት መድረኮች በቀጥታ ይግቡ።</span>
 </div>
 
-<!-- FREE READER MODAL -->
-<div id="readerModal" class="modal-overlay">
-    <div class="modal-body">
-        <h2 id="modalTitle" style="color:var(--accent-cyan); margin-top:0;">የመጽሐፍ ርዕስ</h2>
-        <p id="modalText" style="line-height:1.6; font-size:14px; color:#cbd5e1;"></p>
-        <button class="action-btn" style="background:#ef4444; color:white; margin-top:15px;" onclick="closeFreeReaderModal()">ዝጋ (Close)</button>
-    </div>
+<div class="notice"><strong>አስፈላጊ ማስታወሻ፦</strong> የውጭ ውድድሮችን እዚህ አናስተናግድም፤ የውጭ ሊንኮች ብቻ ናቸው። የዚህ ስሪት የእውቀት ፈተናና ዊል ለሙከራ/መዝናኛ ብቻ ናቸው። እውነተኛ የገንዘብ ወይም የሞባይል ካርድ ሽልማት አልተነቃም፤ ከባለሥልጣን የሕግ ማረጋገጫ፣ ተገቢ ፈቃድ እና ግልጽ የሽልማት ደንብ በኋላ ብቻ ሊጨመር ይችላል።</div>
+
+<main class="grid">
+<section class="card" id="external">
+<span class="tag">ውጭ ሊንኮች</span>
+<h3>🔗 የእውቀትና የውድድር መድረኮች</h3>
+<p class="muted">ከታች ያሉትን ሊንኮች በመጫን ወደ ውጭ ድረ-ገጾች መሄድ ይችላሉ። እነዚህ ሊንኮች የሌሎች ድርጅቶች ናቸው፤ በዚህ ፖርታል በኩል መግባት ብቻ ከእነሱ ጋር የአጋርነት ውል እንዳለ አያመለክትም።</p>
+<div class="linkgrid">
+<a class="linkcard" href="https://kahoot.com/" target="_blank" rel="noopener noreferrer"><strong>🎯 Kahoot!</strong><span>የእውቀት ጨዋታና ተሳትፎ መድረክ ↗</span></a>
+<a class="linkcard" href="https://quizizz.com/" target="_blank" rel="noopener noreferrer"><strong>🧠 Quizizz</strong><span>የትምህርትና የእውቀት ፈተናዎች ↗</span></a>
+<a class="linkcard" href="https://www.jetpunk.com/" target="_blank" rel="noopener noreferrer"><strong>🌎 JetPunk</strong><span>የአጠቃላይ እውቀት ጥያቄዎች ↗</span></a>
+<a class="linkcard" href="https://www.sporcle.com/" target="_blank" rel="noopener noreferrer"><strong>🏆 Sporcle</strong><span>የተለያዩ የእውቀት ጨዋታዎች ↗</span></a>
+</div>
+<p class="muted small">ማስታወሻ፦ እነዚህ የእውቀት መድረኮች ናቸው፤ የገንዘብ ሽልማት ወይም በኢትዮጵያ የሚገኝ ውድድር እንዳለ አንያረጋግጥም። ከመሳተፍዎ በፊት የገጹን ደንብ ያንብቡ።</p>
+</section>
+
+<section class="card half" id="quiz">
+<h3>🧠 የእውቀት ጥያቄዎች</h3>
+<p class="muted small">የአሁኑ ፈተና በዚህ መሣሪያ ላይ ብቻ ይሰራል፤ መልሶች ወደ አገልጋይ አይላኩም። ውጤቱ ሽልማት አያስገኝም።</p>
+<form id="quizForm">
+<div class="quizq">
+<p>1. የኢትዮጵያ የፌዴራል ዋና ከተማ የት ናት?</p>
+<label><input type="radio" name="q1" value="a" required> አዲስ አበባ</label>
+<label><input type="radio" name="q1" value="b"> ጅማ</label>
+<label><input type="radio" name="q1" value="c"> ሐዋሳ</label>
+</div>
+<div class="quizq">
+<p>2. የውሃ ኬሚካላዊ ቀመር ምንድን ነው?</p>
+<label><input type="radio" name="q2" value="a" required> CO₂</label>
+<label><input type="radio" name="q2" value="b"> H₂O</label>
+<label><input type="radio" name="q2" value="c"> O₂</label>
+</div>
+<div class="quizq">
+<p>3. የግል መረጃን ለመጠበቅ ትክክለኛው ልምድ የትኛው ነው?</p>
+<label><input type="radio" name="q3" value="a" required> OTPን ለሁሉም ማጋራት</label>
+<label><input type="radio" name="q3" value="b"> ጠንካራ ይለፍ ቃል መጠቀምና OTPን በሚስጥር መያዝ</label>
+<label><input type="radio" name="q3" value="c"> በሁሉም ድረ-ገጽ አንድ ይለፍ ቃል መጠቀም</label>
+</div>
+<button class="btn" type="submit">መልሶቼን አረጋግጥ</button>
+<div id="quizResult" class="result" role="status" aria-live="polite"></div>
+</form>
+</section>
+
+<section class="card half" id="wheel">
+<span class="tag">ነፃ ሙከራ</span>
+<h3>🎡 የእውቀት ዊል</h3>
+<p class="muted small">ዊሉ የመዝናኛ ሙከራ ነው፤ የገንዘብ ወይም የሞባይል ካርድ ሽልማት አያከፋፍልም።</p>
+<div class="wheelwrap">
+<div class="wheelbox">
+<div class="pointer"></div>
+<div class="wheel" id="wheelGraphic"></div>
+<div class="wheel-label" aria-hidden="true">
+<span>+10 ነጥብ</span>
+<span>የእውቀት ምክር</span>
+<span>ተጨማሪ ጥያቄ</span>
+<span>ዳግም ሞክር</span>
+<span>የምስጋና ባጅ</span>
+<span>ዛሬ በቂ ነው</span>
+</div>
+</div>
+<div>
+<p id="wheelResult" class="result show" aria-live="polite">ዊሉን ለማሽከርከር ከታች ያለውን ቁልፍ ይጫኑ።</p>
+<button class="btn gold" id="spinBtn" type="button">ዊሉን አሽከርክር</button>
+<p class="muted small">በአንድ ጊዜ አንድ ሙከራ ብቻ። ይህ የውጤት ማሳያ ነው፤ ለእውነተኛ ሽልማት የሚያበቃ ስርዓት አይደለም።</p>
+</div>
+</div>
+</section>
+
+<section class="card">
+<h3>📣 የማስታወቂያ ቦታ</h3>
+<div class="banner">
+<div>
+<strong>ለንግዶችና ለስፖንሰሮች</strong>
+<p>በዚህ ቦታ የተረጋገጠ ማስታወቂያ ወይም የዘመቻ ማስታወቂያ ሊቀርብ ይችላል።</p>
+</div>
+<a class="btn secondary" href="mailto:contact@example.com?subject=Ethio%20Digital%20Super%20Portal%20Advertising">ስለ ማስታወቂያ ያነጋግሩ</a>
+</div>
+<p class="muted small">ማስጠንቀቂያ፦ <code>contact@example.com</code> ምሳሌ ነው፤ የእውነተኛ ኢሜይል አድራሻዎን ከማተም በፊት ይቀይሩት።</p>
+</section>
+
+<section class="card" id="rules">
+<h3>📜 ደንቦችና ግልጽነት</h3>
+<ol class="rules">
+<li>በዚህ ስሪት የሚታየው የእውቀት ፈተናና ዊል ለሙከራ እና ለመዝናኛ ብቻ ናቸው።</li>
+<li>የውጭ ድረ-ገጾች የራሳቸው ደንብ፣ የግል መረጃ ፖሊሲና የተሳትፎ መስፈርት አላቸው። ወደ እነሱ ሲገቡ እነዚያን ደንቦች ይከተሉ።</li>
+<li>በዚህ ፖርታል ላይ በአሁኑ ጊዜ የገንዘብ ሽልማት፣ የሞባይል ካርድ ክፍያ ወይም የተሳታፊ ምዝገባ አልተነቃም።</li>
+<li>ወደፊት ሽልማት ከተጨመረ፣ የሚሰጠው ሽልማት፣ የገንዘብ ምንጭ፣ የብቁነት መስፈርት፣ የአሸናፊ ምርጫና የቅሬታ መንገድ በግልጽ ይገለጻሉ። ከዚያ በፊት የሚመለከተው ባለሥልጣን የሕግ መስፈርት ይረጋገጣል።</li>
+<li>ለሽልማት ለመቀበል ማንኛውም ሰው PIN፣ OTP፣ የባንክ ይለፍ ቃል ወይም የካርድ ሚስጥራዊ መረጃ አይጠየቅም።</li>
+</ol>
+</section>
+
+<section class="card" id="privacy">
+<h3>🔐 የግል መረጃ ጥበቃ</h3>
+<p>ይህ አንድ ፋይል የሆነ ስሪት ስም፣ ስልክ ቁጥር ወይም የክፍያ መረጃ አይሰበስብም፤ የፈተና ውጤትና የዊል ውጤት በአሳሹ ውስጥ ብቻ ይታያሉ። ወደፊት የተጠቃሚ መረጃ ከተሰበሰበ የሚመለከቱት የግል መረጃ ጥበቃ ሕጎች፣ የመረጃ ማቆያ ጊዜና የተጠቃሚ መብቶች በባለሙያ መመርመር አለባቸው።</p>
+</section>
+</main>
+
+<footer>
+<p><strong>Ethio Digital Super Portal</strong> — እውቀትን በጥራት፣ ግንኙነትን በግልጽነት።</p>
+<a href="#external">ውጭ ሊንኮች</a>
+<a href="#rules">ደንቦች</a>
+<a href="#privacy">የግል መረጃ ጥበቃ</a>
+<p>© <span id="year"></span> Ethio Digital Super Portal. ሁሉም መብቶች የተጠበቁ ናቸው።</p>
+</footer>
 </div>
 
 <script>
-    let userPoints = 0;
+'use strict';
 
-    function switchTab(tabId, btn) {
-        document.querySelectorAll('.section-content').forEach(sec => sec.classList.remove('active'));
-        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-        document.getElementById(tabId).classList.add('active');
-        if(btn) btn.classList.add('active');
-    }
+document.getElementById('year').textContent = new Date().getFullYear();
 
-    function openFreeReaderModal(title, text) {
-        document.getElementById('modalTitle').innerText = title;
-        document.getElementById('modalText').innerText = text;
-        document.getElementById('readerModal').style.display = 'flex';
-    }
+// ይህ የፖርታሉ ማስታወቂያ ነው፤ ቀጥታ ዜና አይደለም።
+const tickerMessages = [
+ 'በEthio Digital Super Portal እውቀትን ይፈትሹ፤ ወደ ውጭ የትምህርት መድረኮች በቀጥታ ይግቡ።',
+ 'የውጭ ድረ-ገጽ ከመጠቀምዎ በፊት የግል መረጃ ፖሊሲውንና የተሳትፎ ደንቡን ያንብቡ።',
+ 'የእውቀት ዊሉ ለመዝናኛ ብቻ ነው፤ እውነተኛ የገንዘብ ሽልማት በአሁኑ ጊዜ አልተነቃም።'
+];
 
-    function closeFreeReaderModal() {
-        document.getElementById('readerModal').style.display = 'none';
-    }
+let tickerIndex = 0;
 
-    function addEmojiReaction(emoji) {
-        alert(`ምላሽዎ ${emoji} ተመዝግቧል! እናመሰግናለን።`);
-    }
+if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+ setInterval(() => {
+  tickerIndex = (tickerIndex + 1) % tickerMessages.length;
+  const el = document.getElementById('tickerText');
+  el.textContent = tickerMessages[tickerIndex];
+ }, 5000);
+}
 
-    function submitComment() {
-        const text = document.getElementById('userComment').value.trim();
-        if(!text) { alert('እባክዎ አስተያየት ያስገቡ!'); return; }
-        const box = document.getElementById('commentBox');
-        const div = document.createElement('div');
-        div.style.background = 'rgba(56,189,248,0.1)';
-        div.style.padding = '8px';
-        div.style.borderRadius = '8px';
-        div.style.marginTop = '6px';
-        div.innerHTML = `💬 <b>ተጠቃሚ፦</b> ${text}`;
-        box.appendChild(div);
-        document.getElementById('userComment').value = '';
-    }
+document.getElementById('quizForm').addEventListener('submit', function(event) {
+ event.preventDefault();
+ const data = new FormData(event.currentTarget);
+ const correct = {q1:'a', q2:'b', q3:'b'};
+ let score = 0;
 
-    function adminPublish() {
-        const pin = document.getElementById('adminPin').value.trim();
-        if(pin !== "147580") { alert('የተሳሳተ የአስተዳዳሪ PIN ቁጥር!'); return; }
-        alert('✅ በስኬት ተጭኗል!');
-    }
+ Object.keys(correct).forEach(key => {
+  if (data.get(key) === correct[key]) score++;
+ });
+
+ const result = document.getElementById('quizResult');
+ result.className = 'result show';
+ result.textContent =
+  'የሙከራ ውጤትህ፦ ' + score + ' / 3። ' +
+  (score === 3
+   ? 'በጣም ጥሩ! ሁሉንም በትክክል መልሰሃል።'
+   : 'ጥሩ ሙከራ! ትክክለኛ መልሶችን በመማር እንደገና ሞክር።') +
+  ' ይህ የማሳያ ውጤት ብቻ ነው፤ ሽልማት አያስገኝም።';
+});
+
+const prizes = [
+ {text:'የሙከራ ውጤት፦ +10 የእውቀት ነጥብ! ይህ ነጥብ በዚህ ገጽ ላይ የሚታይ ብቻ ነው።'},
+ {text:'ውጤት፦ የእውቀት ምክር! የምታነበውን መረጃ ከሁለት ታማኝ ምንጮች አረጋግጥ።'},
+ {text:'ውጤት፦ ተጨማሪ ጥያቄ! ወደ እውቀት ጥያቄዎች ተመለስና ራስህን ፈትሽ።'},
+ {text:'ውጤት፦ ዳግም ሞክር! መማርና መሞከር የእውቀት መንገድ ነው።'},
+ {text:'ውጤት፦ የምስጋና ባጅ! በእውቀት ፍለጋ መሳተፍህ የሚያስመሰግን ነው።'},
+ {text:'ውጤት፦ ዛሬ በቂ ነው። ነገ እንደገና በአዲስ እውቀት ተመለስ።'}
+];
+
+let spinning = false;
+let wheelRotation = 0;
+
+document.getElementById('spinBtn').addEventListener('click', function() {
+ if (spinning) return;
+
+ spinning = true;
+ this.disabled = true;
+
+ const prizeIndex = Math.floor(Math.random() * prizes.length);
+ const slice = 360 / prizes.length;
+ const centerAngle = prizeIndex * slice + slice / 2;
+ const current = ((wheelRotation % 360) + 360) % 360;
+ const desired = (360 - centerAngle + 360) % 360;
+ const extra = 5 * 360 + ((desired - current + 360) % 360);
+
+ wheelRotation += extra;
+
+ const wheel = document.getElementById('wheelGraphic');
+ wheel.style.transform = 'rotate(' + wheelRotation + 'deg)';
+
+ window.setTimeout(() => {
+  const r = document.getElementById('wheelResult');
+  r.className = 'result show';
+  r.textContent = prizes[prizeIndex].text +
+   ' ማስታወሻ፦ ይህ የመዝናኛ ሙከራ ነው፤ ገንዘብ ወይም ሞባይል ካርድ አይሰጥም።';
+
+  spinning = false;
+  document.getElementById('spinBtn').disabled = false;
+ }, 4200);
+});
 </script>
-
 </body>
 </html>
