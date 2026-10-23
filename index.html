@@ -3,13 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ኢትዮ ዲጂታል ሱፐር ፖርታል - Global Enterprise Hub</title>
+    <title>ኢትዮ ዲጂታል ሱፐር ፖርታል - Global Enterprise Portal</title>
     
     <!-- PWA Meta Tags -->
     <meta name="theme-color" content="#060913">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Ethio Super Portal">
+
+    <!-- GOOGLE TRANSLATE INTEGRATION SCRIPT -->
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'am',
+                includedLanguages: 'am,om,ti,en,ar,fr,es',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
     <style>
         :root {
@@ -36,42 +48,41 @@
             min-height: 100vh;
         }
 
-        .container { max-width: 1000px; width: 100%; padding-bottom: 80px; }
+        .container { max-width: 1050px; width: 100%; padding-bottom: 80px; }
 
-        /* ADVERTISEMENT SLIDER BAR */
-        .ad-slider-bar {
+        /* TRANSLATOR BAR */
+        .translate-bar {
             width: 100%;
-            background: linear-gradient(90deg, rgba(168,85,247,0.2), rgba(56,189,248,0.2));
-            border: 1px solid var(--accent-purple);
-            border-radius: 14px;
-            padding: 10px 15px;
-            margin-bottom: 15px;
+            background: rgba(15, 23, 42, 0.95);
+            border: 1px solid var(--accent-cyan);
+            border-radius: 12px;
+            padding: 8px 12px;
+            margin-bottom: 12px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             box-sizing: border-box;
-            overflow: hidden;
+            flex-wrap: wrap;
+            gap: 8px;
         }
 
-        .ad-slide-text {
-            font-size: 13px;
-            font-weight: bold;
-            color: var(--accent-gold);
-            white-space: nowrap;
-            animation: slideIn 0.5s ease-in-out;
+        .translate-title { font-size: 12px; font-weight: bold; color: var(--accent-cyan); }
+
+        /* AD SLIDER BAR */
+        .ad-slider-bar {
+            width: 100%;
+            background: linear-gradient(90deg, rgba(168,85,247,0.2), rgba(56,189,248,0.2));
+            border: 1px solid var(--accent-purple);
+            border-radius: 12px;
+            padding: 10px 14px;
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-sizing: border-box;
         }
 
-        .ad-apply-btn {
-            background: var(--accent-gold);
-            color: #060913;
-            border: none;
-            padding: 6px 12px;
-            border-radius: 8px;
-            font-weight: bold;
-            cursor: pointer;
-            font-size: 11px;
-            white-space: nowrap;
-        }
+        .ad-slide-text { font-size: 12px; font-weight: bold; color: var(--accent-gold); }
 
         header {
             text-align: center;
@@ -259,41 +270,38 @@
         .web-card-title { font-weight: bold; color: var(--accent-cyan); font-size: 13px; margin-bottom: 4px; }
         .web-card-desc { font-size: 11px; color: var(--text-muted); margin-bottom: 8px; }
 
-        /* CANVAS SPIN WHEEL STYLING */
-        .wheel-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+        /* MODAL STYLING FOR FREE READER */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(6, 9, 19, 0.9);
+            display: none;
             justify-content: center;
-            margin: 15px 0;
+            align-items: center;
+            z-index: 999;
+            padding: 15px;
         }
 
-        canvas {
-            border: 4px solid var(--accent-gold);
-            border-radius: 50%;
-            box-shadow: 0 0 20px var(--accent-gold);
-        }
-
-        /* LIVE CHAT WIDGET */
-        .chat-box {
-            background: rgba(6, 9, 19, 0.95);
+        .modal-body {
+            background: var(--card-bg);
             border: 1px solid var(--accent-cyan);
-            border-radius: 12px;
-            padding: 12px;
-            max-height: 250px;
+            border-radius: 16px;
+            max-width: 650px;
+            width: 100%;
+            padding: 20px;
+            max-height: 80vh;
             overflow-y: auto;
-            margin-bottom: 10px;
         }
 
-        .chat-msg {
-            margin-bottom: 8px;
-            font-size: 12px;
-            padding: 6px 10px;
-            border-radius: 8px;
+        /* EMOJI REACTION BAR */
+        .emoji-bar {
+            display: flex;
+            gap: 10px;
+            margin-top: 8px;
+            justify-content: center;
+            font-size: 18px;
+            cursor: pointer;
         }
-
-        .msg-user { background: rgba(56, 189, 248, 0.2); text-align: right; }
-        .msg-admin { background: rgba(34, 197, 94, 0.2); text-align: left; }
 
         footer {
             margin-top: 20px;
@@ -310,10 +318,16 @@
 
 <div class="container">
 
-    <!-- ADVERTISEMENT SLIDER BAR -->
+    <!-- TRANSLATOR BAR -->
+    <div class="translate-bar">
+        <span class="translate-title">🌐 ቋንቋ ይምረጡ (Select Language):</span>
+        <div id="google_translate_element"></div>
+    </div>
+
+    <!-- AD SLIDER BAR -->
     <div class="ad-slider-bar">
-        <div class="ad-slide-text" id="adSlideText">📢 ድርጅትዎ/ንግድዎ በፖርታላችን አናት ላይ እንዲስተዋወቅ ይፈልጋሉ? አሁኑኑ ያመልክቱ!</div>
-        <button class="ad-apply-btn" onclick="switchTab('adApplyTab', document.querySelectorAll('.tab-btn')[0])">ማስታወቂያ ለማስበዛት</button>
+        <div class="ad-slide-text" id="adSlideText">📢 ድርጅትዎን በፖርታላችን አናት ላይ ያስተዋውቁ! በወር 300 ብር ብቻ።</div>
+        <button class="action-btn" style="width: auto; padding: 4px 10px; font-size: 11px; background: var(--accent-gold); color: #060913;" onclick="switchTab('adApplyTab', null)">ማስታወቂያ ለማስበዛት</button>
     </div>
 
     <!-- HEADER LOGO -->
@@ -322,7 +336,7 @@
             <div class="logo-icon">🌐</div>
             <h1>ኢትዮ ዲጂታል ሱፐር ፖርታል</h1>
         </div>
-        <p style="margin: 0; color: var(--text-muted); font-size: 12px;">መጻሕፍት፣ አፖች፣ ስፖርት፣ ጌሞች፣ ፊልሞች እና የቴሌብር/Binance ክፍያዎች!</p>
+        <p style="margin: 0; color: var(--text-muted); font-size: 12px;">መጻሕፍት፣ አፖች፣ ስፖርት፣ ጌሞች፣ ሃይማኖታዊ ሚዲያዎች፣ ክሪፕቶ፣ ገበያ እና የስፔስ ሳይንስ!</p>
         <div class="badge-bar">
             <div class="user-badge">⭐ ነጥብ (Points): <span id="userPoints">0</span></div>
             <div class="user-badge" style="border-color: var(--accent-green); color: var(--accent-green);">🟢 ሲስተም፡ ዝግጁ (Global Ecosystem)</div>
@@ -334,114 +348,165 @@
         <div class="news-ticker">
             <span class="ticker-title" style="background:#ef4444; color:white;">ሰበር ዜና</span>
             <div class="ticker-content">
-                🔥 አዳዲስ ነጻና ሰብስክሪፕሽን መጻሕፍት ታክለዋል! | Poki፣ CrazyGames፣ FlashScore፣ Spotify እና EBC የቀጥታ ስርጭቶች ተገናኝተዋል!
+                🔥 አዳዲስ ሃይማኖታዊ ቲቪዎች፣ የቤቲንግ ሳይቶች፣ የክሪፕቶ ከረንሲዎች እና የስፔስ ሳይንስ ማህደሮች ተገናኝተዋል!
             </div>
         </div>
         <div class="news-ticker" style="border-color: rgba(34, 197, 94, 0.3);">
             <span class="ticker-title" style="background:var(--accent-green); color:#060913;">የክፍያ ኖቲፊኬሽን</span>
             <div class="ticker-content" style="color: var(--accent-green);">
-                ✅ Txn #10928374 ቴሌብር 50 ETB ገቢ ሆኗል | ✅ Txn #998271 Binance Pay $1.00 USDT ማረጋገጫ ተጠናቋል!
+                ✅ Txn #10928374 ቴሌብር 50 ETB ገቢ ሆኗል | ✅ Txn #8837261 Binance Pay $1.00 USDT ማረጋገጫ ተጠናቋል!
             </div>
         </div>
     </div>
 
-    <!-- NAVIGATION TABS -->
+    <!-- MAIN NAVIGATION TABS -->
     <div class="nav-tabs">
-        <button class="tab-btn active" onclick="switchTab('booksTab', this)">📚 መጻሕፍት ማህደር</button>
-        <button class="tab-btn" onclick="switchTab('gamesTab', this)">🎮 ጌሞች (Games)</button>
-        <button class="tab-btn" onclick="switchTab('mediaTab', this)">🎬 ፊልም & ሙዚቃ</button>
-        <button class="tab-btn" onclick="switchTab('sportsTab', this)">⚽ ስፖርት & ዜና</button>
-        <button class="tab-btn" onclick="switchTab('paymentTab', this)">💳 ክፍያዎች (Payments)</button>
-        <button class="tab-btn" onclick="switchTab('chatTab', this)">💬 ሰርቨር ቻት (Support)</button>
-        <button class="tab-btn" onclick="switchTab('spinTab', this)">🎡 ዕድል ዊል</button>
-        <button class="tab-btn" onclick="switchTab('adApplyTab', this)">📢 ማስታወቂያ ማመልከቻ</button>
-        <button class="tab-btn" onclick="switchTab('socialTab', this)">🔗 ማህበራዊ ሚዲያችን</button>
+        <button class="tab-btn active" onclick="switchTab('booksTab', this)">📚 መጻሕፍት</button>
+        <button class="tab-btn" onclick="switchTab('religiousTab', this)">🕌 ⛪ ሃይማኖታዊ ሚዲያ</button>
+        <button class="tab-btn" onclick="switchTab('moviesTab', this)">🎬 ፊልም & ሙዚቃ</button>
+        <button class="tab-btn" onclick="switchTab('gamesTab', this)">🎮 ጌሞች & ቤቲንግ</button>
+        <button class="tab-btn" onclick="switchTab('shoppingTab', this)">🛒 ገበያ & ክሪፕቶ</button>
+        <button class="tab-btn" onclick="switchTab('spaceTab', this)">🚀 ስፔስ & ቱሪዝም</button>
+        <button class="tab-btn" onclick="switchTab('paymentTab', this)">💳 ክፍያዎች</button>
+        <button class="tab-btn" onclick="switchTab('feedbackTab', this)">💬 አስተያየት & ላይክ</button>
         <button class="tab-btn" onclick="switchTab('adminTab', this)">📤 አድሚን</button>
     </div>
 
     <!-- 1. BOOKS HUB -->
     <div id="booksTab" class="section-content active">
         <div class="card">
-            <h2>📚 የነጻ፣ የሰብስክሪፕሽን እና የዓለም አቀፍ ዌቦች መጻሕፍት</h2>
+            <h2>📚 የነጻ እና የክፍያ መጻሕፍት ማህደር</h2>
             <div class="grid-cards">
                 <div class="web-card">
                     <div class="web-card-title">📗 የነጻ መጻሕፍት ማህደር</div>
-                    <div class="web-card-desc">አጫጭርና ጥቃቅን መጻሕፍት በነጻ ይነበባሉ</div>
-                    <button class="action-btn" onclick="alert('ነጻ መጽሐፉ ተከፍቷል!')">📖 አሁን አንብብ (Free)</button>
+                    <div class="web-card-desc">አጫጭር ታሪኮች - እዚሁ ይነበባሉ</div>
+                    <button class="action-btn" onclick="openFreeReaderModal('የአጭር ታሪኮች ማህደር', 'እንኳን ወደ ነጻ መጻሕፍት ማህደር በሰላም መጡ! ይህ መጽሐፍ በኢትዮ ዲጂታል ሱፐር ፖርታል አማካኝነት በነጻ የቀረበ ነው። ታሪኩን እዚሁ በስልክዎ ወይም በኮምፒዩተርዎ ላይ በደስታ ማንበብ ይችላሉ።')">📖 አሁን አንብብ (FREE)</button>
                 </div>
                 <div class="web-card" style="border-color: var(--accent-gold);">
-                    <div class="web-card-title" style="color:var(--accent-gold);">📙 የወር ሰብስክሪፕሽን (VIP)</div>
-                    <div class="web-card-desc">ሁሉንም ታሪካዊና ፕሪሚየም መጻሕፍት በወር ክፍያ ያግኙ</div>
-                    <button class="action-btn" style="background:var(--accent-gold); color:#060913;" onclick="switchTab('paymentTab', document.querySelectorAll('.tab-btn')[4])">🔓 ሰብስክራይብ ያድርጉ</button>
-                </div>
-                <div class="web-card">
-                    <div class="web-card-title">🌐 Project Gutenberg</div>
-                    <div class="web-card-desc">70,000+ የዓለም አቀፍ ነጻ መጻሕፍት</div>
-                    <a href="https://www.gutenberg.org" target="_blank" class="action-btn" style="text-decoration:none; display:block;">🚀 ወደ ዌቡ ተሸጋገር</a>
+                    <div class="web-card-title" style="color:var(--accent-gold);">📙 የኢትዮጵያ ታሪክ (VIP)</div>
+                    <div class="web-card-desc">ታሪካዊና ምስጢራዊ - 50.00 ብር</div>
+                    <button class="action-btn" style="background:var(--accent-gold); color:#060913;" onclick="switchTab('paymentTab', null)">🔓 በክፍያ ክፈት</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- 2. GAMES HUB -->
-    <div id="gamesTab" class="section-content">
+    <!-- 2. RELIGIOUS MEDIA HUB -->
+    <div id="religiousTab" class="section-content">
         <div class="card">
-            <h2>🎮 ዘመናዊና መሳጭ የጌም ዌብሳይቶች (Ultra Games Hub)</h2>
+            <h2>🕌 ⛪ የሀይማኖታዊ ሚዲያዎች፣ ቲቪዎች እና ሬዲዮዎች</h2>
             <div class="grid-cards">
                 <div class="web-card">
-                    <div class="web-card-title">🕹️ Poki Games</div>
-                    <a href="https://poki.com" target="_blank" class="action-btn" style="text-decoration:none; display:block;">🎮 ጌም ጀምር</a>
+                    <div class="web-card-title">🕌 Minber TV (ሚንበር ቲቪ)</div>
+                    <div class="web-card-desc">እስላማዊ ትምህርቶች እና ዜናዎች</div>
+                    <a href="https://www.youtube.com/@MinberTV" target="_blank" class="action-btn" style="text-decoration:none; display:block;">🔴 የቀጥታ ስርጭት</a>
                 </div>
                 <div class="web-card">
-                    <div class="web-card-title">🎯 CrazyGames</div>
-                    <a href="https://www.crazygames.com" target="_blank" class="action-btn" style="text-decoration:none; display:block;">🎮 ጌም ጀምር</a>
+                    <div class="web-card-title">🕌 Africa TV</div>
+                    <div class="web-card-desc">እስላማዊ ስርጭቶች</div>
+                    <a href="https://www.youtube.com/@africatv1" target="_blank" class="action-btn" style="text-decoration:none; display:block;">🔴 የቀጥታ ስርጭት</a>
                 </div>
                 <div class="web-card">
-                    <div class="web-card-title">♟️ Chess.com</div>
-                    <a href="https://www.chess.com" target="_blank" class="action-btn" style="text-decoration:none; display:block;">🎮 ጌም ጀምር</a>
+                    <div class="web-card-title">⛪ EOTCTV (ኦርቶዶክስ)</div>
+                    <div class="web-card-desc">የኢትዮጵያ ኦርቶዶክስ ተዋህዶ ቲቪ</div>
+                    <a href="https://www.youtube.com/@eotctvchannel" target="_blank" class="action-btn" style="text-decoration:none; display:block;">🔴 የቀጥታ ስርጭት</a>
+                </div>
+                <div class="web-card">
+                    <div class="web-card-title">✝️ Gospel TV</div>
+                    <div class="web-card-desc">ወንጌላዊ የክርስቲያን ቲቪ</div>
+                    <a href="https://www.youtube.com" target="_blank" class="action-btn" style="text-decoration:none; display:block;">🔴 የቀጥታ ስርጭት</a>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- 3. MOVIES & MUSIC -->
-    <div id="mediaTab" class="section-content">
+    <div id="moviesTab" class="section-content">
         <div class="card">
-            <h2>🎬 ፊልም፣ ሙዚቃ እና መዝናኛ (Entertainment)</h2>
+            <h2>🎬 ፊልሞች፣ ሙዚቃ እና መዝናኛ</h2>
             <div class="grid-cards">
                 <div class="web-card">
-                    <div class="web-card-title">🎵 Spotify Web</div>
-                    <a href="https://open.spotify.com" target="_blank" class="action-btn" style="text-decoration:none; display:block;">▶ ሙዚቃ አዳምጥ</a>
+                    <div class="web-card-title">🇪🇹 Sodere TV</div>
+                    <div class="web-card-desc">የኢትዮጵያ ፊልሞች እና ድራማዎች</div>
+                    <a href="https://sodere.com" target="_blank" class="action-btn" style="text-decoration:none; display:block;">▶ ፊልም ተመልከት</a>
                 </div>
                 <div class="web-card">
                     <div class="web-card-title">🎬 Tubi Free Movies</div>
+                    <div class="web-card-desc">ነጻ የሆሊዉድ ፊልሞች</div>
                     <a href="https://tubitv.com" target="_blank" class="action-btn" style="text-decoration:none; display:block;">▶ ፊልም ተመልከት</a>
                 </div>
+                <div class="web-card">
+                    <div class="web-card-title">🎵 Spotify Web</div>
+                    <div class="web-card-desc">አለም አቀፍ ሙዚቃዎች</div>
+                    <a href="https://open.spotify.com" target="_blank" class="action-btn" style="text-decoration:none; display:block;">▶ ሙዚቃ አዳምጥ</a>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- 4. SPORTS & NEWS -->
-    <div id="sportsTab" class="section-content">
+    <!-- 4. GAMES & BETTING HUB -->
+    <div id="gamesTab" class="section-content">
         <div class="card">
-            <h2>⚽ የቀጥታ ስፖርት እና የዜና ማሰራጫዎች</h2>
+            <h2>🎮 ጌሞች እና የካሲኖ/ቤቲንግ ሳይቶች</h2>
             <div class="grid-cards">
                 <div class="web-card">
-                    <div class="web-card-title">⚽ FlashScore</div>
-                    <a href="https://www.flashscore.com" target="_blank" class="action-btn" style="text-decoration:none; display:block;">📊 ውጤቶችን ተከታተል</a>
+                    <div class="web-card-title">🕹️ Poki Games</div>
+                    <a href="https://poki.com" target="_blank" class="action-btn" style="text-decoration:none; display:block;">🎮 ጌም ጀምር</a>
                 </div>
                 <div class="web-card">
-                    <div class="web-card-title">📻 BBC Amharic News</div>
-                    <a href="https://www.bbc.com/amharic" target="_blank" class="action-btn" style="text-decoration:none; display:block;">📰 ዜናዎችን አንብብ</a>
+                    <div class="web-card-title">🎯 Habesha Betting</div>
+                    <a href="https://habeshabets.com" target="_blank" class="action-btn" style="text-decoration:none; display:block;">⚽ ቤቲንግ ተጫወት</a>
+                </div>
+                <div class="web-card">
+                    <div class="web-card-title">🎰 Betika Ethiopia</div>
+                    <a href="https://www.betika.et" target="_blank" class="action-btn" style="text-decoration:none; display:block;">⚽ ቤቲንግ ተጫወት</a>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- 5. PAYMENTS -->
+    <!-- 5. SHOPPING & CRYPTO -->
+    <div id="shoppingTab" class="section-content">
+        <div class="card">
+            <h2>🛒 የኦንላይን ገበያ እና የክሪፕቶ ከረንሲ ማዕከል</h2>
+            <div class="grid-cards">
+                <div class="web-card">
+                    <div class="web-card-title">🛍️ Jumia Ethiopia</div>
+                    <a href="https://www.jumia.com" target="_blank" class="action-btn" style="text-decoration:none; display:block;">🛒 ገበያ ውጣ</a>
+                </div>
+                <div class="web-card">
+                    <div class="web-card-title">🪙 Binance Crypto</div>
+                    <a href="https://www.binance.com" target="_blank" class="action-btn" style="text-decoration:none; display:block;">📈 ክሪፕቶ ንግድ</a>
+                </div>
+                <div class="web-card">
+                    <div class="web-card-title">📊 CoinMarketCap</div>
+                    <a href="https://coinmarketcap.com" target="_blank" class="action-btn" style="text-decoration:none; display:block;">📊 ዋጋዎችን ተከታተል</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 6. SPACE & TOURISM -->
+    <div id="spaceTab" class="section-content">
+        <div class="card">
+            <h2>🚀 የስፔስ ሳይንስ፣ ቱሪዝም እና ብርቅዬ ቅርሶች</h2>
+            <div class="grid-cards">
+                <div class="web-card">
+                    <div class="web-card-title">🚀 NASA Science</div>
+                    <a href="https://www.nasa.gov" target="_blank" class="action-btn" style="text-decoration:none; display:block;">🌌 ስፔስን ጎብኝ</a>
+                </div>
+                <div class="web-card">
+                    <div class="web-card-title">🇪🇹 Visit Ethiopia Tourism</div>
+                    <a href="https://visitethiopia.et" target="_blank" class="action-btn" style="text-decoration:none; display:block;">🏛️ ቅርሶችን ጎብኝ</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 7. PAYMENTS -->
     <div id="paymentTab" class="section-content">
         <div class="card">
-            <h2>💳 የክፍያ አማራጮች (Payments Hub)</h2>
+            <h2>💳 የክፍያ አማራጮች (Payment Gateways)</h2>
             <div class="grid-cards">
                 <div class="web-card">
                     <div class="web-card-title">🟢 ቴሌብር (Telebirr)</div>
@@ -459,74 +524,32 @@
         </div>
     </div>
 
-    <!-- 6. LIVE SERVER CHAT & PROOF UPLOAD -->
-    <div id="chatTab" class="section-content">
+    <!-- 8. FEEDBACK & COMMENTS -->
+    <div id="feedbackTab" class="section-content">
         <div class="card">
-            <h2>💬 የኦንላይን ሰርቨር ቻት እና የደረሰኝ ማስረጃ መላኪያ (Online Support)</h2>
-            <div class="chat-box" id="chatBox">
-                <div class="chat-msg msg-admin">🤖 <b>Ethio Server Support:</b> እንኳን ደህና መጡ! የክፍያ ችግር ካጋጠመዎት ወይም የደረሰኝ ፎቶ መላክ ከፈለጉ እዚህ ይጻፉልን።</div>
-            </div>
-            <div class="form-group">
-                <input type="text" id="chatInput" placeholder="መልእክትዎን እዚህ ይጻፉ...">
-            </div>
-            <div class="form-group">
-                <label>የደረሰኝ ፎቶ/ስክሪንሾት መላኪያ (Proof Screenshot)</label>
-                <input type="file" id="chatProofInput" accept="image/*">
-            </div>
-            <button class="action-btn" onclick="sendChatMessage()">ለሰርቨሩ ላክ (Send)</button>
-        </div>
-    </div>
-
-    <!-- 7. LUCKY SPIN WHEEL -->
-    <div id="spinTab" class="section-content">
-        <div class="card" style="text-align: center;">
-            <h2>🎡 ዕድልዎን ይሞክሩ (Animated Canvas Lucky Spin)</h2>
-            <div class="wheel-container">
-                <canvas id="spinCanvas" width="260" height="260"></canvas>
-            </div>
-            <button class="action-btn" style="background: var(--accent-gold); color: #060913;" onclick="spinCanvasWheel()">አሁን ያሽከርክሩ (Spin Now)</button>
-        </div>
-    </div>
-
-    <!-- 8. ADVERTISEMENT APPLICATION FORM -->
-    <div id="adApplyTab" class="section-content">
-        <div class="card">
-            <h2>📢 የማስታወቂያ ማስበዣ ማመልከቻ ፎርም (Monthly Ad Banner)</h2>
-            <p style="font-size: 12px; color: var(--text-muted);">ድርጅትዎን ወይም አገልግሎትዎን በፖርታላችን የፊት ገጽ አናት ላይ በወር 300 ብር ብቻ አስተዋውቁ!</p>
-            <div class="form-group">
-                <label>የድርጅት ወይም የንግድ ስም</label>
-                <input type="text" id="adBizName" placeholder="ስም ያስገቡ">
-            </div>
-            <div class="form-group">
-                <label>አጭር የማስታወቂያ ጽሁፍ</label>
-                <input type="text" id="adBizText" placeholder="ለምሳሌ፡ ጥራት ያላቸውን ልብሶች በቅናሽ እንሸጣለን...">
-            </div>
-            <div class="form-group">
-                <label>የከፈሉበት የትራንዛክሽን ቁጥር (Txn ID)</label>
-                <input type="text" id="adTxnId" placeholder="የቴሌብር ወይም CBE ደረሰኝ ቁጥር">
-            </div>
-            <button class="action-btn" style="background:var(--accent-green); color:white;" onclick="submitAdApplication()">ማመልከቻውን አስገባ</button>
-        </div>
-    </div>
-
-    <!-- 9. SOCIAL MEDIA LINKS -->
-    <div id="socialTab" class="section-content">
-        <div class="card">
-            <h2>🔗 የእኛ የማህበራዊ ሚዲያ ገጾች (Follow Us)</h2>
-            <div class="grid-cards">
-                <div class="web-card">
-                    <div class="web-card-title">✈️ Telegram Channel</div>
-                    <a href="https://t.me" target="_blank" class="action-btn" style="text-decoration:none; display:block;">ተቀላቀሉ</a>
-                </div>
-                <div class="web-card">
-                    <div class="web-card-title">📘 Facebook Page</div>
-                    <a href="https://facebook.com" target="_blank" class="action-btn" style="text-decoration:none; display:block;">Follow ያድርጉ</a>
+            <h2>💬 አስተያየት፣ ደረጃ (Rating) እና ላይክ መስጫ</h2>
+            <div style="text-align: center; margin-bottom: 12px;">
+                <div style="font-size: 14px; font-weight: bold; color: var(--accent-gold);">ፖርታሉን ደረጃ ይስጡት (Rate Us):</div>
+                <div style="font-size: 22px; cursor: pointer;" onclick="alert('እናመሰግናለን! 5 ኮከብ ሰጥተዋል።')">⭐ ⭐ ⭐ ⭐ ⭐</div>
+                <div class="emoji-bar">
+                    <span onclick="addEmojiReaction('❤️')">❤️</span>
+                    <span onclick="addEmojiReaction('🔥')">🔥</span>
+                    <span onclick="addEmojiReaction('👍')">👍</span>
+                    <span onclick="addEmojiReaction('👏')">👏</span>
+                    <span onclick="addEmojiReaction('🇪🇹')">🇪🇹</span>
+                    <span onclick="addEmojiReaction('🚀')">🚀</span>
                 </div>
             </div>
+            <div class="form-group">
+                <label>የእርስዎ አስተያየት</label>
+                <textarea id="userComment" rows="3" placeholder="አስተያየትዎን እዚህ ይጻፉ..."></textarea>
+            </div>
+            <button class="action-btn" onclick="submitComment()">አስተያየት ላክ</button>
+            <div id="commentBox" style="margin-top: 12px;"></div>
         </div>
     </div>
 
-    <!-- 10. ADMIN PANEL -->
+    <!-- 9. ADMIN PANEL -->
     <div id="adminTab" class="section-content">
         <div class="card">
             <h2>📤 የአስተዳዳሪ መቆጣጠሪያ (Admin Control Panel)</h2>
@@ -534,21 +557,18 @@
                 <label>የአድሚን ፒን (Admin PIN: 147580)</label>
                 <input type="password" id="adminPin" placeholder="PIN ያስገቡ">
             </div>
-            <div class="form-group">
-                <label>ርዕስ</label>
-                <input type="text" id="adminTitle" placeholder="ስም ያስገቡ">
-            </div>
-            <div class="form-group">
-                <label>ማውረጃ ወይም የዌብሳይት ሊንክ</label>
-                <input type="url" id="adminLink" placeholder="https://...">
-            </div>
             <button class="action-btn" onclick="adminPublish()">በራስ-ሰር ጫን (Publish)</button>
         </div>
-    </div>
-
-    <footer>
-        <p>© 2026 Ethio Digital Super Portal. መብቱ በህግ የተጠበቀ ነው።</p>
     </footer>
+</div>
+
+<!-- FREE READER MODAL -->
+<div id="readerModal" class="modal-overlay">
+    <div class="modal-body">
+        <h2 id="modalTitle" style="color:var(--accent-cyan); margin-top:0;">የመጽሐፍ ርዕስ</h2>
+        <p id="modalText" style="line-height:1.6; font-size:14px; color:#cbd5e1;"></p>
+        <button class="action-btn" style="background:#ef4444; color:white; margin-top:15px;" onclick="closeFreeReaderModal()">ዝጋ (Close)</button>
+    </div>
 </div>
 
 <script>
@@ -561,96 +581,32 @@
         if(btn) btn.classList.add('active');
     }
 
-    // CANVAS SPIN WHEEL LOGIC
-    const canvas = document.getElementById('spinCanvas');
-    const ctx = canvas.getContext('2d');
-    const segments = ['10 Points', 'Free Book', '25 Points', 'VIP Pass', '5 Points', 'Try Again'];
-    const colors = ['#38bdf8', '#a855f7', '#f59e0b', '#22c55e', '#ef4444', '#64748b'];
-
-    function drawWheel() {
-        const numSegs = segments.length;
-        const anglePerSeg = (2 * Math.PI) / numSegs;
-
-        for (let i = 0; i < numSegs; i++) {
-            ctx.beginPath();
-            ctx.moveTo(130, 130);
-            ctx.arc(130, 130, 120, i * anglePerSeg, (i + 1) * anglePerSeg);
-            ctx.fillStyle = colors[i];
-            ctx.fill();
-            ctx.stroke();
-
-            // Text
-            ctx.save();
-            ctx.translate(130, 130);
-            ctx.rotate(i * anglePerSeg + anglePerSeg / 2);
-            ctx.textAlign = "right";
-            ctx.fillStyle = "#ffffff";
-            ctx.font = "bold 12px Segoe UI";
-            ctx.fillText(segments[i], 110, 5);
-            ctx.restore();
-        }
-    }
-    drawWheel();
-
-    function spinCanvasWheel() {
-        let rotation = 0;
-        const spinAngle = Math.floor(Math.random() * 360) + 1440;
-        const duration = 3000;
-        const start = performance.now();
-
-        function animate(time) {
-            const elapsed = time - start;
-            if (elapsed < duration) {
-                rotation = (spinAngle * (elapsed / duration)) % 360;
-                ctx.save();
-                ctx.clearRect(0,0,260,260);
-                ctx.translate(130,130);
-                ctx.rotate((rotation * Math.PI) / 180);
-                ctx.translate(-130,-130);
-                drawWheel();
-                ctx.restore();
-                requestAnimationFrame(animate);
-            } else {
-                userPoints += 15;
-                document.getElementById('userPoints').innerText = userPoints;
-                alert('🎉 እንኳን ደስ አለዎት! 15 ነጥቦችን አሸንፈዋል!');
-            }
-        }
-        requestAnimationFrame(animate);
+    function openFreeReaderModal(title, text) {
+        document.getElementById('modalTitle').innerText = title;
+        document.getElementById('modalText').innerText = text;
+        document.getElementById('readerModal').style.display = 'flex';
     }
 
-    // CHAT SUPPORT LOGIC
-    function sendChatMessage() {
-        const input = document.getElementById('chatInput');
-        const box = document.getElementById('chatBox');
-        if(!input.value.trim()) return;
-
-        const userDiv = document.createElement('div');
-        userDiv.className = 'chat-msg msg-user';
-        userDiv.innerHTML = `<b>እርስዎ፡</b> ${input.value}`;
-        box.appendChild(userDiv);
-
-        setTimeout(() => {
-            const adminDiv = document.createElement('div');
-            adminDiv.className = 'chat-msg msg-admin';
-            adminDiv.innerHTML = `🤖 <b>Ethio Server Support:</b> መልእክትዎ ደርሶናል! የደረሰኝ መረጃዎ ተጣርቶ ምላሽ ይሰጥዎታል።`;
-            box.appendChild(adminDiv);
-            box.scrollTop = box.scrollHeight;
-        }, 1000);
-
-        input.value = '';
+    function closeFreeReaderModal() {
+        document.getElementById('readerModal').style.display = 'none';
     }
 
-    // ADVERTISEMENT APPLICATION LOGIC
-    function submitAdApplication() {
-        const name = document.getElementById('adBizName').value.trim();
-        const text = document.getElementById('adBizText').value.trim();
-        const txn = document.getElementById('adTxnId').value.trim();
+    function addEmojiReaction(emoji) {
+        alert(`ምላሽዎ ${emoji} ተመዝግቧል! እናመሰግናለን።`);
+    }
 
-        if(!name || !text || !txn) { alert('እባክዎ ሁሉንም መረጃዎች ይሙሉ!'); return; }
-
-        alert(`✅ ማመልከቻዎ በስኬት ተልኳል!\n📌 ድርጅት፦ ${name}\nበአድሚኑ ተጣርቶ ማስታወቂያዎ በአናት ላይ ይስተዋወቃል።`);
-        document.getElementById('adSlideText').innerText = `📢 ${name}፦ ${text}`;
+    function submitComment() {
+        const text = document.getElementById('userComment').value.trim();
+        if(!text) { alert('እባክዎ አስተያየት ያስገቡ!'); return; }
+        const box = document.getElementById('commentBox');
+        const div = document.createElement('div');
+        div.style.background = 'rgba(56,189,248,0.1)';
+        div.style.padding = '8px';
+        div.style.borderRadius = '8px';
+        div.style.marginTop = '6px';
+        div.innerHTML = `💬 <b>ተጠቃሚ፦</b> ${text}`;
+        box.appendChild(div);
+        document.getElementById('userComment').value = '';
     }
 
     function adminPublish() {
