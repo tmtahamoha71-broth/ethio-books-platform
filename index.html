@@ -1,121 +1,197 @@
-
 <!DOCTYPE html>
 <html lang="am">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ኢትዮ ዲጂታል ኪታብ - Smart Book Finder, Bots & Rewards</title>
+    <title>ኢትዮ ዲጂታል ፕላትፎርም - Smart Books, Apps & Digital Hub</title>
     <style>
         :root {
-            --bg-color: #0f172a;
-            --card-bg: rgba(30, 41, 59, 0.85);
+            --bg-color: #0b0f19;
+            --card-bg: rgba(20, 30, 48, 0.75);
             --accent-color: #38bdf8;
+            --accent-hover: #0284c7;
+            --success-color: #22c55e;
+            --gold-color: #f59e0b;
             --text-color: #f8fafc;
-            --border-color: rgba(255, 255, 255, 0.12);
+            --text-muted: #94a3b8;
+            --border-color: rgba(255, 255, 255, 0.1);
         }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
+            background: radial-gradient(circle at top, #1e293b, #0b0f19);
             color: var(--text-color);
             margin: 0;
             padding: 15px;
             display: flex;
             flex-direction: column;
             align-items: center;
+            min-height: 100vh;
         }
-        .container { max-width: 750px; width: 100%; }
-        
-        /* AD BANNER SPACE */
+
+        .container { max-width: 850px; width: 100%; }
+
+        /* AD BANNER STYLING */
         .ad-container {
             width: 100%;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px dashed rgba(255, 255, 255, 0.2);
-            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px dashed rgba(56, 189, 248, 0.3);
+            border-radius: 10px;
             padding: 10px;
             text-align: center;
-            font-size: 11px;
-            color: #64748b;
+            font-size: 12px;
+            color: var(--text-muted);
             margin-bottom: 15px;
             box-sizing: border-box;
+            backdrop-filter: blur(5px);
         }
 
         header {
             text-align: center;
-            padding: 22px 20px;
+            padding: 25px 20px;
             background: var(--card-bg);
-            backdrop-filter: blur(10px);
-            border-radius: 16px;
+            backdrop-filter: blur(12px);
+            border-radius: 20px;
             border: 1px solid var(--border-color);
             margin-bottom: 20px;
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
         }
-        h1 { color: var(--accent-color); margin: 5px 0; font-size: 24px; }
-        .tagline { color: #94a3b8; font-size: 14px; margin-top: 2px; }
+
+        .user-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(245, 158, 11, 0.15);
+            border: 1px solid var(--gold-color);
+            color: var(--gold-color);
+            padding: 5px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        h1 { color: var(--accent-color); margin: 5px 0; font-size: 28px; letter-spacing: 0.5px; }
+        .tagline { color: var(--text-muted); font-size: 14px; margin-top: 4px; }
+
+        /* NAVIGATION TABS */
+        .nav-tabs {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 8px;
+            margin-bottom: 20px;
+            scrollbar-width: none;
+        }
+        .nav-tabs::-webkit-scrollbar { display: none; }
+
+        .tab-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            padding: 12px 18px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 13px;
+            white-space: nowrap;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .tab-btn.active, .tab-btn:hover {
+            background: var(--accent-color);
+            color: #0b0f19;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+        }
+
+        .section-content { display: none; animation: fadeIn 0.4s ease; }
+        .section-content.active { display: block; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
         .card {
             background: var(--card-bg);
-            backdrop-filter: blur(10px);
-            padding: 22px;
-            border-radius: 14px;
+            backdrop-filter: blur(12px);
+            padding: 24px;
+            border-radius: 16px;
             border: 1px solid var(--border-color);
             margin-bottom: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
         }
+
+        .card h2 { color: var(--accent-color); margin-top: 0; font-size: 20px; }
+
         .form-group { margin-bottom: 15px; }
-        label { display: block; margin-bottom: 6px; font-weight: bold; font-size: 14px; }
-        input {
+        label { display: block; margin-bottom: 6px; font-weight: bold; font-size: 13px; color: #cbd5e1; }
+        
+        input, select, textarea {
             width: 100%;
             padding: 12px;
-            border-radius: 8px;
+            border-radius: 10px;
             border: 1px solid var(--border-color);
-            background: rgba(15, 23, 42, 0.7);
+            background: rgba(11, 15, 25, 0.8);
             color: #fff;
             box-sizing: border-box;
             font-size: 14px;
+            transition: border-color 0.2s;
         }
-        .search-btn {
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+
+        .action-btn {
             width: 100%;
-            padding: 13px;
+            padding: 14px;
             background-color: var(--accent-color);
-            color: #0f172a;
+            color: #0b0f19;
             border: none;
-            border-radius: 8px;
+            border-radius: 10px;
             font-weight: bold;
             cursor: pointer;
             font-size: 15px;
+            transition: all 0.2s ease;
         }
+
+        .action-btn:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-1px);
+        }
+
         .result-box {
             margin-top: 15px;
             padding: 15px;
-            background: rgba(56, 189, 248, 0.1);
+            background: rgba(56, 189, 248, 0.08);
             border: 1px dashed var(--accent-color);
-            border-radius: 8px;
+            border-radius: 10px;
             display: none;
             line-height: 1.6;
+            font-size: 14px;
         }
 
-        /* LUCKY SPIN SECTION */
-        .wheel-section { text-align: center; }
-        .wheel-box {
-            font-size: 18px;
-            font-weight: bold;
-            color: #f59e0b;
-            margin: 15px 0;
-            padding: 15px;
-            background: rgba(15, 23, 42, 0.9);
-            border-radius: 8px;
-            border: 1px solid #f59e0b;
+        /* PAYMENT GRID */
+        .payment-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
         }
-        .spin-btn {
-            width: 100%;
-            padding: 13px;
-            background-color: #22c55e;
-            color: #fff;
-            border: none;
-            border-radius: 8px;
-            font-weight: bold;
-            cursor: pointer;
-            font-size: 15px;
+        .pay-card {
+            background: rgba(11, 15, 25, 0.7);
+            border: 1px solid var(--border-color);
+            padding: 18px;
+            border-radius: 12px;
+            text-align: center;
         }
+        .pay-title { font-weight: bold; color: var(--accent-color); font-size: 16px; margin-bottom: 6px; }
+        .pay-desc { font-size: 12px; color: var(--text-muted); }
+        .pay-account { font-size: 13px; font-weight: bold; margin-top: 10px; color: var(--gold-color); }
 
         /* BOTS BUTTONS */
         .bot-buttons {
@@ -129,26 +205,41 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
-            padding: 12px;
+            padding: 13px;
             border-radius: 10px;
             text-decoration: none;
             font-weight: bold;
             font-size: 13px;
             color: #ffffff;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            transition: transform 0.2s;
         }
+        .bot-btn:hover { transform: translateY(-2px); }
         .btn-tg { background-color: #0088cc; }
         .btn-fb { background-color: #1877f2; }
         .btn-wa { background-color: #25d366; }
         .btn-imo { background-color: #00a8e8; }
 
+        /* SPIN WHEEL */
+        .wheel-box {
+            font-size: 18px;
+            font-weight: bold;
+            color: var(--gold-color);
+            margin: 15px 0;
+            padding: 18px;
+            background: rgba(11, 15, 25, 0.9);
+            border-radius: 12px;
+            border: 1px solid var(--gold-color);
+            text-align: center;
+        }
+
         footer {
-            margin-top: 15px;
+            margin-top: 25px;
             text-align: center;
             font-size: 12px;
-            color: #94a3b8;
+            color: var(--text-muted);
             border-top: 1px solid var(--border-color);
             padding-top: 15px;
+            width: 100%;
         }
     </style>
 </head>
@@ -156,93 +247,234 @@
 
 <div class="container">
 
-    <!-- TOP ADVERTISEMENT SPACE -->
+    <!-- TOP SPONSORED ADVERTISEMENT -->
     <div class="ad-container">
-        📢 ማስታወቂያ (Sponsored Ad Area)
+        📢 ማስታወቂያ፡ በኢትዮ ዲጂታል መድረክ ላይ ምርትዎትን ማስተዋወቅ ይፈልጋሉ? በቴሌግራም ያግኙን!
     </div>
 
     <header>
-        <h1>📚 ኢትዮ ዲጂታል ኪታብ</h1>
-        <p class="tagline">መጻሕፍትን በስም ይፈልጉ፤ በፈለጉት የሶሻል ሚዲያ ቦት ያግኙን!</p>
+        <div class="user-badge">⭐ የእርስዎ ነጥብ (Points): <span id="userPoints">0</span></div>
+        <h1>🌟 ኢትዮ ዲጂታል ፕላትፎርም</h1>
+        <p class="tagline">መጻሕፍት፣ የሞባይል አፖች፣ የሀገር ውስጥ ክፍያዎች እና መዝናኛዎች!</p>
     </header>
 
-    <!-- 1. መጽሐፍ ፈላጊ (Book Finder) -->
-    <div class="card">
-        <h2>🔍 ፈጣን የመጽሐፍ አሳሽ (AI Search)</h2>
-        <div class="form-group">
-            <label>የሚፈልጉትን መጽሐፍ ስም ይጻፉ</label>
-            <input type="text" id="bookQuery" placeholder="ለምሳሌ፡ የልቦና ጥበብ፣ ፍቅር እስከ መቃብር...">
+    <!-- NAVIGATION TABS -->
+    <div class="nav-tabs">
+        <button class="tab-btn active" onclick="switchTab('booksTab', this)">📚 መጻሕፍት (Books)</button>
+        <button class="tab-btn" onclick="switchTab('appsTab', this)">📱 አፖች (Apps)</button>
+        <button class="tab-btn" onclick="switchTab('paymentTab', this)">💳 ክፍያ መክፈያ (Payments)</button>
+        <button class="tab-btn" onclick="switchTab('uploadTab', this)">📤 የባለቤት ሰቀለያ (Admin)</button>
+        <button class="tab-btn" onclick="switchTab('funTab', this)">🎮 መዝናኛ (Lucky Spin)</button>
+        <button class="tab-btn" onclick="switchTab('botsTab', this)">🤖 ቦቶች (Social Connect)</button>
+    </div>
+
+    <!-- 1. BOOKS SECTION -->
+    <div id="booksTab" class="section-content active">
+        <div class="card">
+            <h2>🔍 ፈጣን የመጽሐፍ አሳሽ (AI Book Finder)</h2>
+            <div class="form-group">
+                <label>የሚፈልጉትን የመጽሐፍ ስም ወይም ደራሲ ይጻፉ</label>
+                <input type="text" id="bookQuery" placeholder="ለምሳሌ፡ የልቦና ጥበብ፣ ፍቅር እስከ መቃብር...">
+            </div>
+            <button class="action-btn" onclick="searchBook()">መጽሐፉን ፈልግ</button>
+            <div id="searchResult" class="result-box"></div>
         </div>
-        <button class="search-btn" onclick="searchBook()">መጽሐፉን ፈልግ (Search)</button>
-        <div id="searchResult" class="result-box"></div>
     </div>
 
-    <!-- MIDDLE ADVERTISEMENT SPACE -->
-    <div class="ad-container">
-        📢 ስፖንሰር የተደረገ ማስታወቂያ
-    </div>
-
-    <!-- 2. የዕድል ዊል (Lucky Spin Wheel) -->
-    <div class="card wheel-section">
-        <h2>🎁 ዕድልዎን ይሞክሩ (Lucky Spin)</h2>
-        <p style="font-size: 13px; color: #cbd5e1;">የቀኑን ነፃ የሞባይል ካርድ ወይም የፕሪሚየም መጽሐፍ ሽልማት ያሸንፉ!</p>
-        <div id="wheelResult" class="wheel-box">🎁 ሽልማትዎ እዚህ ይታያል</div>
-        <button class="spin-btn" onclick="spinWheel()">አሁን ያሽከርክሩ (Spin Wheel)</button>
-    </div>
-
-    <!-- 3. የሶሻል ሚዲያ ቦቶች ማገናኛ -->
-    <div class="card" style="text-align: center;">
-        <h2>🤖 በፈለጉት ሶሻል ሚዲያ ቦት ያግኙን</h2>
-        <p style="font-size: 13px; color: #cbd5e1;">ዌብሳይት መጠቀም ካልፈለጉ በቀጥታ በቦቶቻችን በኩል መጽሐፍ ማዘዝ ይችላሉ፦</p>
-        
-        <div class="bot-buttons">
-            <a href="https://t.me/DRCS_Ethiopia_Bot" target="_blank" class="bot-btn btn-tg">
-                ✈️ Telegram Bot
-            </a>
-            <a href="https://m.me/your_facebook_page" target="_blank" class="bot-btn btn-fb">
-                💬 Messenger Bot
-            </a>
-            <a href="https://wa.me/251900000000" target="_blank" class="bot-btn btn-wa">
-                🟢 WhatsApp Bot
-            </a>
-            <a href="https://imo.im" target="_blank" class="bot-btn btn-imo">
-                🔹 IMO Connect
-            </a>
+    <!-- 2. APPS SECTION -->
+    <div id="appsTab" class="section-content">
+        <div class="card">
+            <h2>📱 ተወዳጅ የሞባይል አፖች እና ዲጂታል መሳሪያዎች</h2>
+            <p style="font-size: 13px; color: var(--text-muted);">ከስር ያሉትን አፖች አውርደው መጠቀም ይችላሉ፦</p>
+            <div class="payment-options">
+                <div class="pay-card">
+                    <div class="pay-title">📖 Ethio Reader App</div>
+                    <div class="pay-desc">ፒዲኤፍ መጻሕፍትን በስልክ ለማንበብ የሚረዳ አፕ</div>
+                    <button class="action-btn" style="margin-top:10px; padding:8px; font-size:12px;">አውርድ (Download)</button>
+                </div>
+                <div class="pay-card">
+                    <div class="pay-title">🔤 የግዕዝ መማሪያ አፕ</div>
+                    <div class="pay-desc">ቀላል የግዕዝ ቋንቋ መማሪያ ስማርት አፕ</div>
+                    <button class="action-btn" style="margin-top:10px; padding:8px; font-size:12px;">አውርድ (Download)</button>
+                </div>
+            </div>
         </div>
+    </div>
+
+    <!-- 3. PAYMENT METHODS & VERIFICATION -->
+    <div id="paymentTab" class="section-content">
+        <div class="card">
+            <h2>💳 የሀገር ውስጥ የክፍያ አማራጮች (Local Payments)</h2>
+            <p style="font-size: 13px; color: var(--text-muted);">ለፕሪሚየም አገልግሎቶች ክፍያ የሚያስተላልፉባቸው የባንክና የቴሌብር ሂሳቦች፦</p>
+            
+            <div class="payment-options">
+                <div class="pay-card">
+                    <div class="pay-title">🟢 ቴሌብር (Telebirr)</div>
+                    <div class="pay-desc">በቀጥታ በስልክ ቁጥርዎ ይክፈሉ</div>
+                    <div class="pay-account">ቁጥር፦ 0900000000</div>
+                </div>
+                <div class="pay-card">
+                    <div class="pay-title">🏦 የኢትዮጵያ ንግድ ባንክ (CBE)</div>
+                    <div class="pay-desc">በCBE Birr ወይም Mobile Banking</div>
+                    <div class="pay-account">ሂሳብ፦ 1000XXXXXXXXX</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>✅ የክፍያ ማረጋገጫ ማስገቢያ (Payment Verification)</h2>
+            <div class="form-group">
+                <label>የከፈሉበት የትራንዛክሽን ቁጥር (Txn ID / Ref No)</label>
+                <input type="text" id="txnId" placeholder="ለምሳሌ፡ 1092837465">
+            </div>
+            <div class="form-group">
+                <label>የከፈሉበት አገልግሎት/መጽሐፍ ስም</label>
+                <input type="text" id="paidItem" placeholder="ለምሳሌ፡ የልቦና ጥበብ ፕሪሚየም መጽሐፍ">
+            </div>
+            <button class="action-btn" style="background-color: var(--success-color); color: white;" onclick="verifyPayment()">ክፍያውን አረጋግጥ (Submit Verification)</button>
+            <div id="verifyResult" class="result-box"></div>
+        </div>
+    </div>
+
+    <!-- 4. ADMIN UPLOAD SECTION -->
+    <div id="uploadTab" class="section-content">
+        <div class="card">
+            <h2>📤 አዲስ መጽሐፍ ወይም ፋይል መጫኛ (Admin Control)</h2>
+            <div class="form-group">
+                <label>የአስተዳዳሪ ሚስጥር ቁጥር (Admin PIN)</label>
+                <input type="password" id="adminPin" placeholder="PIN ቁጥር ያስገቡ">
+            </div>
+            <div class="form-group">
+                <label>የመጽሐፉ ርዕስ (Book Title)</label>
+                <input type="text" id="uploadTitle" placeholder="የመጽሐፉን ስም ያስገቡ">
+            </div>
+            <div class="form-group">
+                <label>የመጽሐፍ ምድብ (Category)</label>
+                <select id="uploadCategory">
+                    <option value="ታሪክ">ታሪክ እና ፖለቲካ</option>
+                    <option value="ስነ-ልቦና">ስነ-ልቦና እና አነቃቂ</option>
+                    <option value="ልቦለድ">ልቦለድ</option>
+                    <option value="ቴክኖሎጂ">ቴክኖሎጂ እና ቢዝነስ</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>የመጽሐፉ ማውረጃ ሊንክ (PDF/Download Link)</label>
+                <input type="url" id="uploadLink" placeholder="https://...">
+            </div>
+            <button class="action-btn" onclick="uploadBook()">መጽሐፉን ጫን (Publish Book)</button>
+            <div id="uploadResult" class="result-box"></div>
+        </div>
+    </div>
+
+    <!-- 5. ENTERTAINMENT / LUCKY SPIN -->
+    <div id="funTab" class="section-content">
+        <div class="card" style="text-align: center;">
+            <h2>🎁 ዕድልዎን ይሞክሩ (Lucky Spin & Points)</h2>
+            <p style="font-size: 13px; color: var(--text-muted);">የቀኑን ነፃ የሞባይል ካርድ ወይም የሽልማት ነጥቦችን ያሸንፉ!</p>
+            <div id="wheelResult" class="wheel-box">🎁 ሽልማትዎ እዚህ ይታያል</div>
+            <button class="action-btn" style="background-color: var(--gold-color); color: #0b0f19;" onclick="spinWheel()">አሁን ያሽከርክሩ (Spin Wheel)</button>
+        </div>
+    </div>
+
+    <!-- 6. BOTS INTEGRATION -->
+    <div id="botsTab" class="section-content">
+        <div class="card" style="text-align: center;">
+            <h2>🤖 በፈለጉት ሶሻል ሚዲያ ቦት ያግኙን</h2>
+            <div class="bot-buttons">
+                <a href="https://t.me/DRCS_Ethiopia_Bot" target="_blank" class="bot-btn btn-tg">✈️ Telegram Bot</a>
+                <a href="https://m.me/your_facebook_page" target="_blank" class="bot-btn btn-fb">💬 Messenger</a>
+                <a href="https://wa.me/251900000000" target="_blank" class="bot-btn btn-wa">🟢 WhatsApp</a>
+                <a href="https://imo.im" target="_blank" class="bot-btn btn-imo">🔹 IMO Connect</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- BOTTOM SPONSORED ADVERTISEMENT -->
+    <div class="ad-container" style="margin-top: 15px;">
+        📢 ስፖንሰር የተደረገ ማስታወቂያ (Sponsored Ad Area)
     </div>
 
     <footer>
-        <p>© 2026 Ethio Digital Books. መብቱ በህግ የተጠበቀ ነው።</p>
+        <p>© 2026 Ethio Digital Platform. መብቱ በህግ የተጠበቀ ነው።</p>
     </footer>
 </div>
 
 <script>
+    let userPoints = 0;
+
+    function switchTab(tabId, btn) {
+        document.querySelectorAll('.section-content').forEach(sec => sec.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        
+        document.getElementById(tabId).classList.add('active');
+        btn.classList.add('active');
+    }
+
     function searchBook() {
         const query = document.getElementById('bookQuery').value.trim();
         const resultBox = document.getElementById('searchResult');
-        
         if(!query) {
             alert('እባክዎ የመጽሐፍ ስም ያስገቡ!');
             return;
         }
-
         resultBox.style.display = 'block';
-        resultBox.innerHTML = `⏳ <b>${query}</b> የሚለውን መጽሐፍ በመፈለግ ላይ...<br><br>
-        ✅ <b>የተገኘ ውጤት፦</b><br>📄 <b>ርዕስ፡</b> ${query} (PDF Digital Edition)<br>
-        📥 <a href="#" style="color: #38bdf8; font-weight: bold;">መጽሐፉን ለማውረድ እዚህ ይጫኑ (Download PDF)</a>`;
+        resultBox.innerHTML = `⏳ <b>${query}</b> በመፈለግ ላይ...<br><br>✅ <b>የተገኘ ውጤት፦</b><br>📄 ርዕስ፡ ${query} (Digital Edition)<br>📥 <a href="#" style="color: #38bdf8; font-weight: bold;">መጽሐፉን ለማውረድ እዚህ ይጫኑ (Download PDF)</a>`;
+    }
+
+    function verifyPayment() {
+        const txnId = document.getElementById('txnId').value.trim();
+        const paidItem = document.getElementById('paidItem').value.trim();
+        const resBox = document.getElementById('verifyResult');
+
+        if(!txnId || !paidItem) {
+            alert('እባክዎ የትራንዛክሽን ቁጥሩን እና የአገልግሎቱን ስም ይጻፉ!');
+            return;
+        }
+
+        resBox.style.display = 'block';
+        resBox.style.backgroundColor = 'rgba(34, 197, 94, 0.15)';
+        resBox.style.color = '#4ade80';
+        resBox.innerHTML = `✅ <b>የክፍያ ጥያቄዎ ተልኳል!</b><br>🔢 የትራንዛክሽን ቁጥር፡ ${txnId}<br>መረጃው ተጣርቶ በአጭር ደቂቃ ውስጥ መጽሐፉ ይከፈትልዎታል።`;
+    }
+
+    function uploadBook() {
+        const pin = document.getElementById('adminPin').value.trim();
+        const title = document.getElementById('uploadTitle').value.trim();
+        const category = document.getElementById('uploadCategory').value;
+        const link = document.getElementById('uploadLink').value.trim();
+        const resBox = document.getElementById('uploadResult');
+
+        if(pin !== "1234") { // የራስህን ምስጢራዊ PIN እዚህ መቀየር ትችላለህ
+            alert('የተሳሳተ የአስተዳዳሪ PIN ቁጥር!');
+            return;
+        }
+
+        if(!title || !link) {
+            alert('እባክዎ የመጽሐፉን ስም እና ሊንክ ያስገቡ!');
+            return;
+        }
+
+        resBox.style.display = 'block';
+        resBox.style.backgroundColor = 'rgba(34, 197, 94, 0.15)';
+        resBox.style.color = '#4ade80';
+        resBox.innerHTML = `✅ <b>መጽሐፉ በስኬት ተጭኗል!</b><br>📚 ርዕስ፡ ${title}<br>📂 ምድብ፡ ${category}<br>🔗 ሊንክ፡ <a href="${link}" target="_blank" style="color: #38bdf8;">${link}</a>`;
     }
 
     function spinWheel() {
         const prizes = [
-            "🎉 እንኳን ደስ አለዎት! 25 ብር የሞባይል ካርድ አሸንፈዋል!",
-            "📚 1 ነጻ ፕሪሚየም መጽሐፍ ተሸልመዋል!",
-            "😢 ለጥቂት አመለጣችሁ! ነገ ደግመው ይሞክሩ።",
-            "⭐ 10 የloyalty ነጥቦችን አግኝተዋል!"
+            { text: "🎉 10 የloyalty ነጥቦችን አግኝተዋል!", points: 10 },
+            { text: "📚 1 ነጻ ፕሪሚየም መጽሐፍ ተሸልመዋል!", points: 5 },
+            { text: "🎉 25 የloyalty ነጥቦችን አግኝተዋል!", points: 25 },
+            { text: "😢 ለጥቂት አመለጣችሁ! ነገ ደግመው ይሞክሩ።", points: 0 }
         ];
-        const randomPrize = prizes[Math.floor(Math.random() * prizes.length)];
-        document.getElementById('wheelResult').innerText = randomPrize;
+        const selected = prizes[Math.floor(Math.random() * prizes.length)];
+        document.getElementById('wheelResult').innerText = selected.text;
+        
+        userPoints += selected.points;
+        document.getElementById('userPoints').innerText = userPoints;
     }
 </script>
 
 </body>
 </html>
+                
