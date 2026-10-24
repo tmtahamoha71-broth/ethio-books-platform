@@ -1289,7 +1289,171 @@ $("loadNewsBtn").addEventListener("click", async () => {
 });
 
 /* የመጀመሪያ ጽሑፍ ቅድመ እይታ */
-renderArticlePreview();
+<!-- TM Studio Reward Wheel -->
+<section id="tm-reward-wheel" style="max-width:520px;margin:30px auto;padding:20px;border-radius:18px;background:#101827;color:white;text-align:center;font-family:Arial,sans-serif">
+  <h2>🎁 TM Studio የሽልማት መንኮራኩር</h2>
+  <p>የተጫዋች መለያህን አስገብተህ ዕድልህን ሞክር!</p>
+  <input id="tm-player-code" type="text" placeholder="የተጫዋች መለያ" autocomplete="off"
+    style="box-sizing:border-box;width:100%;padding:13px;border-radius:9px;border:1px solid #64748b;margin:8px 0;color:#111">
+  <div id="tm-wheel" style="width:190px;height:190px;border-radius:50%;margin:18px auto;background:conic-gradient(#facc15 0 25%,#2563eb 25% 50%,#dc2626 50% 75%,#16a34a 75% 100%);border:7px solid white;display:flex;align-items:center;justify-content:center;font-size:42px">🎁</div>
+  <button id="tm-spin-button" type="button"
+    style="padding:13px 24px;border:0;border-radius:10px;background:#facc15;color:#111;font-weight:bold;font-size:16px;cursor:pointer">
+    🎯 አሁን አዙር
+  </button>
+  <p id="tm-wheel-message" role="status" aria-live="polite">መለያህን አስገባና አዙር።</p>
+  <div id="tm-wheel-result" style="overflow-wrap:anywhere"></div>
+</section>
+
+<script>
+(function () {
+  const button = document.getElementById('tm-spin-button');
+  if (!button || button.dataset.ready === 'yes') return;
+  button.dataset.ready = 'yes';
+
+  const input = document.getElementById('tm-player-code');
+  const wheel = document.getElementById('tm-wheel');
+  const message = document.getElementById('tm-wheel-message');
+  const result = document.getElementById('tm-wheel-result');
+
+  button.addEventListener('click', async function () {
+    const playerCode = input.value.trim();
+    if (!playerCode) {
+      message.textContent = 'እባክህ የተጫዋች መለያህን አስገባ።';
+      input.focus();
+      return;
+    }
+
+    if (!window.supabase || typeof window.supabase.rpc !== 'function') {
+      message.textContent = 'Supabase ገና አልተገናኘም። የገጹን የSupabase ማገናኛ ማረጋገጥ ያስፈልጋል።';
+      return;
+    }
+
+    button.disabled = true;
+    result.textContent = '';
+    message.textContent = 'የሽልማት ዕድልህ እየተረጋገጠ ነው…';
+    wheel.style.transition = 'transform 2s ease-out';
+    wheel.style.transform = 'rotate(720deg)';
+
+    try {
+      const { data, error } = await window.supabase.rpc(
+        'spin_reward_wheel',
+        { p_player_code: playerCode }
+      );
+
+      if (error) throw error;
+      const reward = Array.isArray(data) ? data[0] : data;
+      if (!reward || !reward.code) throw new Error('የሽልማት ውጤት አልተመለሰም።');
+
+      message.textContent = '🎉 እንኳን ደስ አለህ!';
+      const heading = document.createElement('h3');
+      heading.textContent = 'ሽልማትህ፦ ' + reward.reward_name;
+      const code = document.createElement('p');
+      code.textContent = 'የሽልማት ኮድ፦ ' + reward.code;
+      const note = document.createElement('p');
+      note.textContent = 'ኮድህን አስቀምጥ፤ ሽልማቱ አንድ ጊዜ ብቻ ሊጠቀምበት ይችላል።';
+      const copy = document.createElement('button');
+      copy.type = 'button';
+      copy.textContent = 'ኮዱን ቅዳ';
+      copy.style.cssText = 'padding:10px;border:0;border-radius:8px;cursor:pointer';
+      copy.addEventListener('click', async function () {
+        try {
+          await navigator.clipboard.writeText(reward.code);
+          copy.textContent = 'ተቀድቷል ✓';
+        } catch (_) {
+          code.textContent = 'የሽልማት ኮድ፦ ' + reward.code + ' (በእጅ ቅዳው)';
+        }
+      });
+
+      result.append(heading, code, note, copy);
+    } catch (err) {
+      const detail = String(err.message || '');
+      if (detail.includes('Daily spin already used')) {
+        message.textContent = 'ዛሬ ዕድልህን ተጠቅመሃል። ነገ እንደገና ሞክር።';
+      } else if (detail.toLowerCase().includes('invalid') || detail.toLowerCase().includes('player')) {
+        message.textContent = 'የተጫዋች መለያው ትክክል አይደለም ወይም አልተፈቀደም።';
+      } else {
+        message.textContent = 'ስህተት ተፈጥሯል። የSupabase ማገናኛንና የspin_reward_wheel ተግባርን ማረጋገጥ ያስፈልጋል።';
+      }
+    } finally {
+      button.disabled = false;
+    }
+  });
+})();
+</script>
+
+renderArticlePreview(); 
+<!-- TM Studio Reward Wheel -->
+<section id="tm-reward-wheel" style="max-width:520px;margin:30px auto;padding:20px;border-radius:18px;background:#101827;color:white;text-align:center;font-family:Arial,sans-serif">
+  <h2>🎁 TM Studio የሽልማት መንኮራኩር</h2>
+  <p>የተጫዋች መለያህን አስገብተህ ዕድልህን ሞክር!</p>
+  <input id="tm-player-code" type="text" placeholder="የተጫዋች መለያ" autocomplete="off"
+    style="box-sizing:border-box;width:100%;padding:13px;border-radius:9px;border:1px solid #64748b;margin:8px 0;color:#111">
+  <div id="tm-wheel" style="width:190px;height:190px;border-radius:50%;margin:18px auto;background:conic-gradient(#facc15 0 25%,#2563eb 25% 50%,#dc2626 50% 75%,#16a34a 75% 100%);border:7px solid white;display:flex;align-items:center;justify-content:center;font-size:42px">🎁</div>
+  <button id="tm-spin-button" type="button"
+    style="padding:13px 24px;border:0;border-radius:10px;background:#facc15;color:#111;font-weight:bold;font-size:16px;cursor:pointer">
+    🎯 አሁን አዙር
+  </button>
+  <p id="tm-wheel-message" role="status" aria-live="polite">መለያህን አስገባና አዙር።</p>
+  <div id="tm-wheel-result" style="overflow-wrap:anywhere"></div>
+</section>
+
+<script>
+(function () {
+  const button = document.getElementById('tm-spin-button');
+  if (!button || button.dataset.ready === 'yes') return;
+  button.dataset.ready = 'yes';
+
+  const input = document.getElementById('tm-player-code');
+  const wheel = document.getElementById('tm-wheel');
+  const message = document.getElementById('tm-wheel-message');
+  const result = document.getElementById('tm-wheel-result');
+
+  button.addEventListener('click', async function () {
+    const playerCode = input.value.trim();
+    if (!playerCode) {
+      message.textContent = 'እባክህ የተጫዋች መለያህን አስገባ።';
+      input.focus();
+      return;
+    }
+
+    if (!window.supabase || typeof window.supabase.rpc !== 'function') {
+      message.textContent = 'Supabase ገና አልተገናኘም። የገጹን የSupabase ማገናኛ ማረጋገጥ ያስፈልጋል።';
+      return;
+    }
+
+    button.disabled = true;
+    result.textContent = '';
+    message.textContent = 'የሽልማት ዕድልህ እየተረጋገጠ ነው…';
+    wheel.style.transition = 'transform 2s ease-out';
+    wheel.style.transform = 'rotate(720deg)';
+
+    try {
+      const { data, error } = await window.supabase.rpc(
+        'spin_reward_wheel',
+        { p_player_code: playerCode }
+      );
+
+      if (error) throw error;
+      const reward = Array.isArray(data) ? data[0] : data;
+      if (!reward || !reward.code) throw new Error('የሽልማት ውጤት አልተመለሰም።');
+
+      message.textContent = '🎉 እንኳን ደስ አለህ!';
+      const heading = document.createElement('h3');
+      heading.textContent = 'ሽልማትህ፦ ' + reward.reward_name;
+      const code = document.createElement('p');
+      code.textContent = 'የሽልማት ኮድ፦ ' + reward.code;
+      const note = document.createElement('p');
+      note.textContent = 'ኮድህን አስቀምጥ፤ ሽልማቱ አንድ ጊዜ ብቻ ሊጠቀምበት ይችላል።';
+      const copy = document.createElement('button');
+      copy.type = 'button';
+      copy.textContent = 'ኮዱን ቅዳ';
+      copy.style.cssText = 'padding:10px;border:0;border-radius:8px;cursor:pointer';
+      copy.addEventListener('click', async function () {
+        try {
+          await navigator.clipboard.writeText(reward.code);
+          copy.textContent = 'ተቀድቷል ✓';
+        } catch (_) {
+          
 </script>
 </body>
 </html>
