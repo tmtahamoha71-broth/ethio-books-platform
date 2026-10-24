@@ -1598,4 +1598,55 @@ window.initSupabase = function () {
 };
 
 window.initSupabase();
+</script>     
+<script>
+async function loadSupabaseBooks() {
+  if (!window.sb) return;
+
+  const container = document.getElementById("edspCards");
+  if (!container) return;
+
+  const { data, error } = await window.sb
+    .from("books")
+    .select("id,title,author,description,price,cover_url,language,category")
+    .eq("is_published", true)
+    .order("created_at", { ascending: false });
+
+  if (error) {
+    console.error("Books loading error:", error.message);
+    return;
+  }
+
+  if (!data || data.length === 0) return;
+
+  data.forEach(book => {
+    const card = document.createElement("article");
+    card.className = "edsp-card";
+    card.dataset.category = book.category || "";
+
+    const title = document.createElement("h3");
+    title.textContent = book.title;
+    card.appendChild(title);
+
+    if (book.author) {
+      const author = document.createElement("p");
+      author.textContent = "ደራሲ፦ " + book.author;
+      card.appendChild(author);
+    }
+
+    if (book.description) {
+      const description = document.createElement("p");
+      description.textContent = book.description;
+      card.appendChild(description);
+    }
+
+    const price = document.createElement("p");
+    price.textContent = "ዋጋ፦ " + book.price;
+    card.appendChild(price);
+
+    container.appendChild(card);
+  });
+}
+
+window.addEventListener("load", loadSupabaseBooks);
 </script>
