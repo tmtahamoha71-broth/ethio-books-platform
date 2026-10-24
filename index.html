@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="am">
 <head>
 <meta charset="UTF-8">
@@ -255,7 +255,7 @@ footer li { margin: 6px 0; }
       <a href="#payments">ክፍያ</a>
     </nav>
   </div>
-</header> <main>
+</header>   <main>
 <section class="hero" id="home">
   <div class="container hero-grid">
     <div class="hero-main">
@@ -454,7 +454,7 @@ footer li { margin: 6px 0; }
       </div>
     </div>
   </div>
-</section>   <section id="studio">
+</section> <section id="studio">
   <div class="container">
     <div class="section-heading">
       <div>
@@ -629,7 +629,7 @@ footer li { margin: 6px 0; }
       </div>
     </div>
   </div>
-</section> <section id="tools">
+</section>  <section id="tools">
   <div class="container">
     <div class="section-heading">
       <div>
@@ -724,7 +724,8 @@ footer li { margin: 6px 0; }
     <p>የመረጃ፣ የእውቀትና የዲጂታል አገልግሎት መድረክ።</p>
     <button class="btn btn-primary" id="openEnvelopeBtn" type="button">መድረኩን ክፈት 🎉</button>
   </div>
-</div> <script>
+</div>
+<script>
 "use strict";
 
 const $ = (id) => document.getElementById(id);
@@ -1292,3 +1293,282 @@ renderArticlePreview();
 </script>
 </body>
 </html>
+<section id="ethio-super-portal" style="padding:20px 12px;font-family:inherit;">
+  <header style="text-align:center;margin-bottom:22px;">
+    <h2>🌐 Ethio Digital Super Portal</h2>
+    <p>መረጃ፣ ትምህርት፣ መዝናኛና ዲጂታል አገልግሎቶች — ሁሉም በአንድ ቦታ!</p>
+  </header>
+
+  <input id="edspSearch" type="search"
+    placeholder="🔎 ሚዲያ፣ ቁርአን፣ ስፖርት፣ ፊልም... ፈልግ"
+    oninput="edspFilter()"
+    style="box-sizing:border-box;width:100%;padding:14px;border:1px solid #bbb;border-radius:12px;margin-bottom:14px;font-size:16px;">
+
+  <nav id="edspFilters" style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;">
+    <button onclick="edspCategory('all')">🌐 ሁሉም</button>
+    <button onclick="edspCategory('islam')">🕌 እስላማዊ</button>
+    <button onclick="edspCategory('news')">📰 ዜና</button>
+    <button onclick="edspCategory('music')">🎵 ሙዚቃ</button>
+    <button onclick="edspCategory('film')">🎬 ፊልም</button>
+    <button onclick="edspCategory('sport')">⚽ ስፖርት</button>
+    <button onclick="edspCategory('games')">🎮 ጨዋታ</button>
+    <button onclick="edspCategory('learn')">📚 ትምህርት</button>
+    <button onclick="edspCategory('ai')">🤖 AIና ቦቶች</button>
+    <button onclick="edspCategory('services')">🧰 አገልግሎቶች</button>
+  </nav>
+
+  <style>
+    #edspFilters button {
+      padding:9px 12px;
+      border:1px solid #bbb;
+      border-radius:22px;
+      background:transparent;
+      color:inherit;
+      cursor:pointer;
+    }
+    #edspCards {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(225px,1fr));
+      gap:14px;
+    }
+    #edspCards .edsp-card {
+      padding:16px;
+      border:1px solid #ddd;
+      border-radius:14px;
+      overflow-wrap:anywhere;
+    }
+    #edspCards .edsp-card h3 { margin-top:0; }
+    #edspCards .edsp-card a {
+      display:inline-block;
+      margin:5px 8px 5px 0;
+      line-height:1.7;
+    }
+  </style>
+
+  <div id="edspCards">
+
+    <!-- ETHIOPIAN ISLAMIC MEDIA -->
+    <article class="edsp-card" data-category="islam">
+      <h3>🕌 የኢትዮጵያ እስላማዊ ሚዲያዎች</h3>
+      <p>የአገር ውስጥ እስላማዊ ዜና፣ ዳዕዋ፣ ትምህርትና የሚዲያ ቻናሎች።</p>
+      <a href="https://www.youtube.com/results?search_query=Ethiopian+Islamic+Media"
+         target="_blank" rel="noopener noreferrer">የኢትዮጵያ እስላማዊ ሚዲያ ↗</a>
+      <a href="https://www.youtube.com/results?search_query=Ethiopian+Islamic+TV+Amharic"
+         target="_blank" rel="noopener noreferrer">እስላማዊ ቲቪ ↗</a>
+      <a href="https://www.youtube.com/results?search_query=Oromo+Islamic+Media+Ethiopia"
+         target="_blank" rel="noopener noreferrer">የኦሮምኛ ሚዲያ ↗</a>
+      <a href="https://www.youtube.com/results?search_query=Ethiopian+Muslim+scholars"
+         target="_blank" rel="noopener noreferrer">የዑለማዎች ትምህርት ↗</a>
+    </article>
+
+    <article class="edsp-card" data-category="islam">
+      <h3>📺 እስላማዊ ቲቪና የድር ቻናሎች</h3>
+      <p>የአገር ውስጥ እና የውጭ ቻናሎችን ለማግኘት።</p>
+      <a href="https://www.youtube.com/results?search_query=Minber+TV+Ethiopia"
+         target="_blank" rel="noopener noreferrer">Minber TV ፈልግ ↗</a>
+      <a href="https://www.youtube.com/results?search_query=Nejashi+TV+Ethiopia"
+         target="_blank" rel="noopener noreferrer">Nejashi TV ፈልግ ↗</a>
+      <a href="https://www.youtube.com/results?search_query=Harun+Media+Ethiopia"
+         target="_blank" rel="noopener noreferrer">Harun Media ፈልግ ↗</a>
+      <a href="https://www.youtube.com/results?search_query=Africa+TV+Islamic"
+         target="_blank" rel="noopener noreferrer">Africa TV ፈልግ ↗</a>
+      <a href="https://www.youtube.com/results?search_query=Ethiopian+Islamic+live+stream"
+         target="_blank" rel="noopener noreferrer">ቀጥታ ስርጭቶች ↗</a>
+    </article>
+
+    <article class="edsp-card" data-category="islam">
+      <h3>📖 ቁርአን፣ ተጅዊድና ተፍሲር</h3>
+      <p>የቁርአን ንባብ፣ ትርጉም፣ ተጅዊድና ማብራሪያ።</p>
+      <a href="https://quran.com/" target="_blank" rel="noopener noreferrer">Quran.com ↗</a>
+      <a href="https://www.youtube.com/results?search_query=Quran+Tafsir+Amharic"
+         target="_blank" rel="noopener noreferrer">ተፍሲር በአማርኛ ↗</a>
+      <a href="https://www.youtube.com/results?search_query=Quran+Tafsir+Afaan+Oromo"
+         target="_blank" rel="noopener noreferrer">ተፍሲር በኦሮምኛ ↗</a>
+      <a href="https://www.youtube.com/results?search_query=Tajweed+Quran+lessons"
+         target="_blank" rel="noopener noreferrer">ተጅዊድ ↗</a>
+    </article>
+
+    <article class="edsp-card" data-category="islam">
+      <h3>📚 ሐዲስ፣ ፊቅህና ዐቂዳ</h3>
+      <p>የእስልምና ሳይንሶች፣ የሐዲስ ምንጮችና ትምህርቶች።</p>
+      <a href="https://sunnah.com/" target="_blank" rel="noopener noreferrer">Sunnah.com ↗</a>
+      <a href="https://www.youtube.com/results?search_query=Islamic+Fiqh+lessons+Amharic"
+         target="_blank" rel="noopener noreferrer">ፊቅህ በአማርኛ ↗</a>
+      <a href="https://www.youtube.com/results?search_query=Aqeedah+Islamic+lessons"
+         target="_blank" rel="noopener noreferrer">ዐቂዳ ↗</a>
+      <a href="https://www.youtube.com/results?search_query=Hadith+lessons+Amharic"
+         target="_blank" rel="noopener noreferrer">ሐዲስ በአማርኛ ↗</a>
+    </article>
+
+    <article class="edsp-card" data-category="islam">
+      <h3>🕋 ሲራ፣ የሰሐቦች ታሪክና ዳዕዋ</h3>
+      <p>የነቢዩ ﷺ ሕይወት፣ የሰሐቦች ታሪክና የእስልምና ትምህርቶች።</p>
+      <a href="https://www.youtube.com/results?search_query=Seerah+Prophet+Amharic"
+         target="_blank" rel="noopener noreferrer">ሲራ በአማርኛ ↗</a>
+      <a href="https://www.youtube.com/results?search_query=Companions+of+Prophet+Islam"
+         target="_blank" rel="noopener noreferrer">የሰሐቦች ታሪክ ↗</a>
+      <a href="https://www.youtube.com/results?search_query=Islamic+Dawah+Ethiopia"
+         target="_blank" rel="noopener noreferrer">የዳዕዋ ትምህርት ↗</a>
+    </article>
+
+    <article class="edsp-card" data-category="islam">
+      <h3>🎙️ መንዙማ፣ ነሺዳና ማድሕ</h3>
+      <p>የኢትዮጵያና የዓለም እስላማዊ ድምፆች።</p>
+      <a href="https://www.youtube.com/results?search_query=Ethiopian+Menzuma"
+         target="_blank" rel="noopener noreferrer">የኢትዮጵያ መንዙማ ↗</a>
+      <a href="https://www.youtube.com/results?search_query=Ethiopian+Islamic+Neshida"
+         target="_blank" rel="noopener noreferrer">ነሺዳ ↗</a>
+      <a href="https://www.youtube.com/results?search_query=Madh+Nabawi"
+         target="_blank" rel="noopener noreferrer">ማድሕ ነበዊ ↗</a>
+    </article>
+
+    <article class="edsp-card" data-category="islam">
+      <h3>🌍 ዓለም አቀፍ እስላማዊ ሚዲያ</h3>
+      <p>የእስልምና ትምህርት፣ የቁርአን ስርጭትና የዳዕዋ ቻናሎች።</p>
+      <a href="https://www.islamchannel.tv/" target="_blank" rel="noopener noreferrer">Islam Channel ↗</a>
+      <a href="https://quran.com/" target="_blank" rel="noopener noreferrer">Quran.com ↗</a>
+      <a href="https://www.youtube.com/results?search_query=Islamic+TV+live+international"
+         target="_blank" rel="noopener noreferrer">ዓለም አቀፍ ቻናሎች ↗</a>
+    </article>
+
+    <!-- NEWS -->
+    <article class="edsp-card" data-category="news">
+      <h3>📰 የኢትዮጵያ ዜና</h3>
+      <p>የሀገር ውስጥ ዜናና ወቅታዊ መረጃ።</p>
+      <a href="https://www.ena.et/" target="_blank" rel="noopener noreferrer">ENA ↗</a>
+      <a href="https://www.bbc.com/amharic" target="_blank" rel="noopener noreferrer">BBC Amharic ↗</a>
+      <a href="https://www.youtube.com/results?search_query=Ethiopia+News+Today"
+         target="_blank" rel="noopener noreferrer">የኢትዮጵያ ዜና ፈልግ ↗</a>
+    </article>
+
+    <article class="edsp-card" data-category="news">
+      <h3>🌐 ዓለም አቀፍ ዜና</h3>
+      <p>የዓለም ዜና፣ ትንታኔና ዘገባዎች።</p>
+      <a href="https://www.reuters.com/" target="_blank" rel="noopener noreferrer">Reuters ↗</a>
+      <a href="https://www.bbc.com/news" target="_blank" rel="noopener noreferrer">BBC News ↗</a>
+      <a href="https://www.aljazeera.com/" target="_blank" rel="noopener noreferrer">Al Jazeera ↗</a>
+    </article>
+
+    <!-- MUSIC -->
+    <article class="edsp-card" data-category="music">
+      <h3>🎵 ሙዚቃና ድምፅ</h3>
+      <p>የሀገር ውስጥና የውጭ ሙዚቃ መድረኮች።</p>
+      <a href="https://music.youtube.com/" target="_blank" rel="noopener noreferrer">YouTube Music ↗</a>
+      <a href="https://open.spotify.com/" target="_blank" rel="noopener noreferrer">Spotify ↗</a>
+      <a href="https://www.youtube.com/results?search_query=Ethiopian+Music"
+         target="_blank" rel="noopener noreferrer">የኢትዮጵያ ሙዚቃ ↗</a>
+    </article>
+
+    <!-- FILMS -->
+    <article class="edsp-card" data-category="film">
+      <h3>🎬 ፊልምና ድራማ</h3>
+      <p>የሀገር ውስጥና የውጭ ፊልም መድረኮች።</p>
+      <a href="https://www.netflix.com/" target="_blank" rel="noopener noreferrer">Netflix ↗</a>
+      <a href="https://www.youtube.com/results?search_query=Ethiopian+Movies"
+         target="_blank" rel="noopener noreferrer">የኢትዮጵያ ፊልሞች ↗</a>
+      <a href="https://www.youtube.com/results?search_query=Ethiopian+Drama"
+         target="_blank" rel="noopener noreferrer">የኢትዮጵያ ድራማ ↗</a>
+    </article>
+
+    <!-- SPORTS -->
+    <article class="edsp-card" data-category="sport">
+      <h3>⚽ ስፖርትና ቀጥታ ውጤት</h3>
+      <p>እግር ኳስ፣ ሌሎች ስፖርቶች፣ ውጤትና የጨዋታ መርሐ ግብር።</p>
+      <a href="https://www.fifa.com/" target="_blank" rel="noopener noreferrer">FIFA ↗</a>
+      <a href="https://www.espn.com/soccer/" target="_blank" rel="noopener noreferrer">ESPN ↗</a>
+      <a href="https://www.google.com/search?q=football+live+scores"
+         target="_blank" rel="noopener noreferrer">ቀጥታ ውጤት ↗</a>
+    </article>
+
+    <!-- GAMES -->
+    <article class="edsp-card" data-category="games">
+      <h3>🎮 ጨዋታዎችና ውድድሮች</h3>
+      <p>የመስመር ላይ ጨዋታ፣ የእውቀት ፈተናና ውድድሮች።</p>
+      <a href="https://www.crazygames.com/" target="_blank" rel="noopener noreferrer">CrazyGames ↗</a>
+      <a href="https://www.roblox.com/" target="_blank" rel="noopener noreferrer">Roblox ↗</a>
+      <a href="https://www.chess.com/" target="_blank" rel="noopener noreferrer">Chess.com ↗</a>
+      <a href="https://www.sporcle.com/" target="_blank" rel="noopener noreferrer">Sporcle ↗</a>
+      <a href="https://kahoot.com/" target="_blank" rel="noopener noreferrer">Kahoot! ↗</a>
+    </article>
+
+    <!-- EDUCATION -->
+    <article class="edsp-card" data-category="learn">
+      <h3>📚 ትምህርትና መጽሐፍት</h3>
+      <p>የእውቀት ምንጮች፣ ኮርሶችና መጽሐፍት።</p>
+      <a href="https://www.khanacademy.org/" target="_blank" rel="noopener noreferrer">Khan Academy ↗</a>
+      <a href="https://www.coursera.org/" target="_blank" rel="noopener noreferrer">Coursera ↗</a>
+      <a href="https://archive.org/" target="_blank" rel="noopener noreferrer">Internet Archive ↗</a>
+      <a href="https://books.google.com/" target="_blank" rel="noopener noreferrer">Google Books ↗</a>
+    </article>
+
+    <!-- AI AND BOTS -->
+    <article class="edsp-card" data-category="ai">
+      <h3>🤖 AIና የሰው ሠራሽ አስተውሎት</h3>
+      <p>የAI ውይይት፣ ጽሑፍ፣ ምስልና የሥራ መሣሪያዎች።</p>
+      <a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">ChatGPT ↗</a>
+      <a href="https://gemini.google.com/" target="_blank" rel="noopener noreferrer">Google Gemini ↗</a>
+      <a href="https://www.canva.com/" target="_blank" rel="noopener noreferrer">Canva ↗</a>
+    </article>
+
+    <article class="edsp-card" data-category="ai">
+      <h3>💬 ቦቶችና የውይይት መድረኮች</h3>
+      <p>የመረጃ ፍለጋ፣ የውይይት ቦቶችና የአውቶሜሽን መሣሪያዎች።</p>
+      <a href="https://telegram.org/" target="_blank" rel="noopener noreferrer">Telegram ↗</a>
+      <a href="https://www.google.com/search?q=useful+Telegram+bots"
+         target="_blank" rel="noopener noreferrer">ጠቃሚ ቦቶች ፈልግ ↗</a>
+    </article>
+
+    <!-- UTILITIES -->
+    <article class="edsp-card" data-category="services">
+      <h3>🧰 የዲጂታል መሣሪያዎች</h3>
+      <p>ትርጉም፣ ፋይል መቀየርና የድር መሣሪያዎች።</p>
+      <a href="https://translate.google.com/" target="_blank" rel="noopener noreferrer">Google Translate ↗</a>
+      <a href="https://www.ilovepdf.com/" target="_blank" rel="noopener noreferrer">iLovePDF ↗</a>
+      <a href="https://www.speedtest.net/" target="_blank" rel="noopener noreferrer">Speedtest ↗</a>
+    </article>
+
+    <article class="edsp-card" data-category="services">
+      <h3>🗺️ ካርታ፣ ኢሜይልና የድር ፍለጋ</h3>
+      <p>የቦታ ፍለጋና የዕለት ተዕለት የድር አገልግሎቶች።</p>
+      <a href="https://maps.google.com/" target="_blank" rel="noopener noreferrer">Google Maps ↗</a>
+      <a href="https://www.google.com/" target="_blank" rel="noopener noreferrer">Google ↗</a>
+      <a href="https://mail.google.com/" target="_blank" rel="noopener noreferrer">Gmail ↗</a>
+    </article>
+
+  </div>
+
+  <p id="edspNoResults" style="display:none;text-align:center;padding:20px;">
+    የፈለግከው አገልግሎት አልተገኘም። ሌላ ቃል ሞክር።
+  </p>
+</section>
+
+<script>
+(function () {
+  let selectedCategory = "all";
+
+  window.edspFilter = function () {
+    const input = document.getElementById("edspSearch");
+    const query = input.value.toLowerCase().trim();
+    let visibleCount = 0;
+
+    document.querySelectorAll("#edspCards .edsp-card").forEach(card => {
+      const textMatches = card.innerText.toLowerCase().includes(query);
+      const categoryMatches =
+        selectedCategory === "all" ||
+        card.dataset.category === selectedCategory;
+
+      const show = textMatches && categoryMatches;
+      card.style.display = show ? "" : "none";
+      if (show) visibleCount++;
+    });
+
+    document.getElementById("edspNoResults").style.display =
+      visibleCount ? "none" : "block";
+  };
+
+  window.edspCategory = function (category) {
+    selectedCategory = category;
+    window.edspFilter();
+  };
+})();
+</script>
