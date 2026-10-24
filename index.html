@@ -1571,4 +1571,31 @@ renderArticlePreview();
     window.edspFilter();
   };
 })();
+</script>  
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+window.supabaseReady = false;
+
+window.initSupabase = function () {
+  const SUPABASE_URL = "የ  https://tqvemkwvbikwnnulncgm.supabase.co/rest/v1/    ";
+  const SUPABASE_KEY = "የ https://tqvemkwvbikwnnulncgm.supabase.co/rest/v1/    ";
+
+  if (
+    SUPABASE_URL.includes("እዚህ") ||
+    SUPABASE_KEY.includes("እዚህ")
+  ) {
+    console.warn("የSupabase መረጃ ገና አልተሞላም።");
+    return;
+  }
+
+  window.sb = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
+
+  window.supabaseReady = true;
+  console.log("Supabase client initialized.");
+};
+
+window.initSupabase();
 </script>
